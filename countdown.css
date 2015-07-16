@@ -7,6 +7,10 @@ h1, h2, h3, h4, h5, h6 {
 body {
   margin: 0;
   overflow-x: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
 }
 iframe {
   border: none;
@@ -65,6 +69,9 @@ main, aside {
   position: relative;
   top: 33vw;
   width: 100vw;
+  color: white;
+  background-color: rgba(0, 0, 0, .5);
+  padding: 10px 0;
 }
 aside {
   transition: -webkit-transform 0.3s ease-out;
@@ -80,7 +87,7 @@ aside {
   position: absolute;
   z-index: 2;
   width: calc(100vw - 2px);
-  height: calc(100vw - 60px);
+  height: calc(100vh - 60px);
   border-left: 2px solid #7FBC4A;
   background-color: white;
 }
@@ -94,4 +101,26 @@ aside {
 .irc {
   height: 100%;
   position: fixed;
+}
+.bg {
+  opacity: 0;
+  z-index: 0;
+  margin: 0;
+  overflow-x: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+.fadeout {
+  animation-duration: 1s;
+  animation-name: fadeout;
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
