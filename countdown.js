@@ -19,8 +19,10 @@ function initPage() {
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
 
-  setInterval(changeImage, 30000);
+  setInterval(changeImage, 60000);
   changeImage();
+
+  timeout = setInterval(setCountdown, 10);
 }
 
 function changeImage() {
@@ -43,7 +45,46 @@ function nextImage() {
   return data_images[Math.floor(Math.random() * data_images.length)];
 }
 
+function setCountdown() {
+  if (typeof releaseDate !== 'undefined') {
+    // WHAT? THERE'S A DATE?
+    var releaseMillis = new Date(releaseDate).getTime();
+    var timeDiff = releaseMillis - Date.now();
+
+    // Javascript doesn't have a nice way of formatting numbers
+    // Instead wwe end up with stacks of code like this.
+    var days = Math.ceil(timeDiff / 86400000).toString();
+    if (days < 10)
+      days = '0' + days;
+    timeDiff %= 86400000;
+    var hours = Math.ceil(timeDiff / 3600000).toString();
+    if (hours < 10)
+      hours = '0' + hours;
+    timeDiff %= 3600000;
+    var minutes = Math.ceil(timeDiff / 60000).toString();
+    if (minutes < 10)
+      minutes = '0' + minutes;
+    timeDiff %= 60000;
+    var seconds = Math.ceil(timeDiff / 1000).toString();
+    if (seconds < 10)
+      seconds = '0' + seconds;
+    timeDiff %= 1000;
+    var centiSecs = Math.ceil(timeDiff / 10).toString(); // Bet you've never seen a centisecond be used before...
+    if (centiSecs < 10)
+      centiSecs = '0' + centiSecs;
+
+    document.querySelector('.countdown').innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
+  }
+  // Try remove the interval
+  else if (timeout)
+    window.clearInterval(timeout);
+}
+
 window.addEventListener('load', initPage);
+
+var timeout;
+var releaseDate = '2015-07-18T10:08:15';
+//var releaseDate = sorry, can't talk about it;
 
 // Long list of images
 // 'img/' gets added on automatically
