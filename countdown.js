@@ -99,15 +99,21 @@ var releaseDate;
 var data_images = [
   'AlpineFly.png',
   'Becron5.png',
+  'BlueSpace.png',
   'Creature.png',
   'Diplo.png',
   'Fleet.png',
   'GlattrecSystem.png',
   'NewEridu.png',
+  'NightDrone.png',
   'NoMansSky_GalacticMap.png',
   'NoMansSky_Monolith.png',
   'NoMansSky_SpaceStationTube.png',
+  'OvalWalker.png',
+  'RedSpace.png',
+  'SunsetBots.png',
   'station1.jpg',
   'station2.jpg',
-  'station3.jpg'
+  'station3.jpg',
+  'logo.png'
 ];
