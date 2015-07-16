@@ -46,44 +46,52 @@ function nextImage() {
 }
 
 function setCountdown() {
+  var cd = document.querySelector('.countdown');
   if (typeof releaseDate !== 'undefined') {
     // WHAT? THERE'S A DATE?
     var releaseMillis = new Date(releaseDate).getTime();
     var timeDiff = releaseMillis - Date.now();
 
-    // Javascript doesn't have a nice way of formatting numbers
-    // Instead wwe end up with stacks of code like this.
-    var days = Math.ceil(timeDiff / 86400000).toString();
-    if (days < 10)
-      days = '0' + days;
-    timeDiff %= 86400000;
-    var hours = Math.ceil(timeDiff / 3600000).toString();
-    if (hours < 10)
-      hours = '0' + hours;
-    timeDiff %= 3600000;
-    var minutes = Math.ceil(timeDiff / 60000).toString();
-    if (minutes < 10)
-      minutes = '0' + minutes;
-    timeDiff %= 60000;
-    var seconds = Math.ceil(timeDiff / 1000).toString();
-    if (seconds < 10)
-      seconds = '0' + seconds;
-    timeDiff %= 1000;
-    var centiSecs = Math.ceil(timeDiff / 10).toString(); // Bet you've never seen a centisecond be used before...
-    if (centiSecs < 10)
-      centiSecs = '0' + centiSecs;
+    if (timeDiff > 0) {
+      // Javascript doesn't have a nice way of formatting numbers
+      // Instead wwe end up with stacks of code like this.
+      var days = Math.ceil(timeDiff / 86400000).toString();
+      if (days < 10)
+        days = '0' + days;
+      timeDiff %= 86400000;
+      var hours = Math.ceil(timeDiff / 3600000).toString();
+      if (hours < 10)
+        hours = '0' + hours;
+      timeDiff %= 3600000;
+      var minutes = Math.ceil(timeDiff / 60000).toString();
+      if (minutes < 10)
+        minutes = '0' + minutes;
+      timeDiff %= 60000;
+      var seconds = Math.ceil(timeDiff / 1000).toString();
+      if (seconds < 10)
+        seconds = '0' + seconds;
+      timeDiff %= 1000;
+      var centiSecs = Math.ceil(timeDiff / 10).toString(); // Bet you've never seen a centisecond be used before...
+      if (centiSecs < 10)
+        centiSecs = '0' + centiSecs;
 
-    document.querySelector('.countdown').innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
+      cd.innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
+    } else {
+      cd.innerHTML = 'No Man\'s Sky Has Been Released';
+      window.clearInterval(timeout);
+    }
   }
   // Try remove the interval
-  else if (timeout)
+  else if (timeout) {
+    cd.innerHTML = 'Really Soon<sup>tm</sup>';
     window.clearInterval(timeout);
+  }
 }
 
 window.addEventListener('load', initPage);
 
 var timeout;
-var releaseDate = '2015-07-18T10:08:15';
+var releaseDate;
 //var releaseDate = sorry, can't talk about it;
 
 // Long list of images
