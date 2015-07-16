@@ -1,0 +1,42 @@
+* {
+  font-family: Raleway, 'Open Sans', Helvetica, Verdana, Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: geosanslight-nmsregular, 'Open Sans', Helvetica, Verdana, Arial, sans-serif;
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+.center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+header {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  height: 60px;
+  width: 100%;
+  background-color: #7FBC4A;
+  color: white;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
+}
+header h1 {
+  max-height: 60px;
+  margin: 10px 20px;
+}
+main, aside {
+  position: absolute;
+  top: 0;
+  padding-top: 60px;
+}
+.main-container {
+  position: relative;
+  top: 33vw;
+  width: 100vw;
+}
