@@ -68,10 +68,13 @@ main, aside {
 .main-container {
   position: relative;
   top: 33vw;
-  width: 100vw;
   color: white;
   background-color: rgba(0, 0, 0, .5);
   padding: 10px 0;
+}
+main {
+  transition: width 0.3s ease-out;
+  width: 100vw
 }
 aside {
   transition: -webkit-transform 0.3s ease-out;
@@ -89,7 +92,7 @@ aside {
   width: calc(100vw - 2px);
   height: calc(100vh - 60px);
   border-left: 2px solid #7FBC4A;
-  background-color: white;
+  background-color: #F7F7F7;
 }
 .open aside {
   -webkit-transform: translateX(0);
@@ -97,6 +100,9 @@ aside {
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
   transform: translateX(0);
+}
+aside h2 {
+  margin-left: 10px;
 }
 .irc {
   height: 100%;
@@ -122,5 +128,23 @@ aside {
   }
   to {
     opacity: 0;
+  }
+}
+@media all and (min-width: 920px) {
+  .open main {
+    width: 67vw;
+  }
+  aside {
+    width: calc(33vw - 2px);
+  }
+  .open aside {
+    -webkit-transform: translateX(67vw);
+    -moz-transform: translateX(67vw);
+    -ms-transform: translateX();
+    -o-transform: translateX(67vw);
+    transform: translateX(67vw);
+  }
+  .main-container {
+    top: 10vw;
   }
 }
