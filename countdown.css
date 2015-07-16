@@ -64,7 +64,7 @@ main, aside {
 }
 .main-container {
   position: relative;
-  top: 33vw;
+  top: 40vh;
   color: white;
   background-color: rgba(0, 0, 0, .5);
   padding: 10px 0;
@@ -143,8 +143,5 @@ aside h2 {
     -ms-transform: translateX();
     -o-transform: translateX(67vw);
     transform: translateX(67vw);
-  }
-  .main-container {
-    top: 10vw;
   }
 }
