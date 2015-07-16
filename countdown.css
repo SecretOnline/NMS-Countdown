@@ -71,7 +71,8 @@ main, aside {
 }
 main {
   transition: width 0.3s ease-out;
-  width: 100vw
+  width: 100vw;
+  z-index: 1;
 }
 aside {
   transition: -webkit-transform 0.3s ease-out;
