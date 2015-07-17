@@ -23,6 +23,7 @@ function initPage() {
   changeImage();
 
   timeout = setInterval(setCountdown, 10);
+  minorTimeout = setInterval(setMinorCountdown, 10);
 }
 
 function changeImage() {
@@ -52,31 +53,9 @@ function setCountdown() {
     var releaseMillis = new Date(releaseDate).getTime();
     var timeDiff = releaseMillis - Date.now();
 
-    if (timeDiff > 0) {
-      // Javascript doesn't have a nice way of formatting numbers
-      // Instead wwe end up with stacks of code like this.
-      var days = Math.floor(timeDiff / 86400000).toString();
-      if (days < 10)
-        days = '0' + days;
-      timeDiff %= 86400000;
-      var hours = Math.floor(timeDiff / 3600000).toString();
-      if (hours < 10)
-        hours = '0' + hours;
-      timeDiff %= 3600000;
-      var minutes = Math.floor(timeDiff / 60000).toString();
-      if (minutes < 10)
-        minutes = '0' + minutes;
-      timeDiff %= 60000;
-      var seconds = Math.floor(timeDiff / 1000).toString();
-      if (seconds < 10)
-        seconds = '0' + seconds;
-      timeDiff %= 1000;
-      var centiSecs = Math.floor(timeDiff / 10).toString(); // Bet you've never seen a centisecond be used before...
-      if (centiSecs < 10)
-        centiSecs = '0' + centiSecs;
-
-      cd.innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
-    } else {
+    if (timeDiff > 0)
+      cd.innerHTML = toCountdownString(timeDiff);
+    else {
       cd.innerHTML = 'No Man\'s Sky Has Been Released';
       window.clearInterval(timeout);
     }
@@ -88,11 +67,65 @@ function setCountdown() {
   }
 }
 
+function setMinorCountdown() {
+  var setTime = false;
+  var cd = document.querySelector('.minor-countdown');
+  for (var i = 0; i < minorCountdowns.length; i++) {
+    var timerMillis = new Date(minorCountdowns[i]).getTime();
+    var timeDiff = timerMillis - Date.now();
+    if (timeDiff > 0) {
+      cd.innerHTML = toCountdownString(timeDiff);
+      setTime = true;
+      break;
+    }
+  }
+  if (!setTime) {
+    cd.innerHTML = 'No more countdowns have been specified';
+    window.clearInterval(minorTimeout);
+  }
+}
+
+function toCountdownString(millis) {
+  // Javascript doesn't have a nice way of formatting numbers
+  // Instead wwe end up with stacks of code like this.
+  var days = Math.floor(millis / 86400000).toString();
+  if (days < 10)
+    days = '0' + days;
+  millis %= 86400000;
+  var hours = Math.floor(millis / 3600000).toString();
+  if (hours < 10)
+    hours = '0' + hours;
+  millis %= 3600000;
+  var minutes = Math.floor(millis / 60000).toString();
+  if (minutes < 10)
+    minutes = '0' + minutes;
+  millis %= 60000;
+  var seconds = Math.floor(millis / 1000).toString();
+  if (seconds < 10)
+    seconds = '0' + seconds;
+  millis %= 1000;
+  var centiSecs = Math.floor(millis / 10).toString(); // Bet you've never seen a centisecond be used before...
+  if (centiSecs < 10)
+    centiSecs = '0' + centiSecs;
+
+  return days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
+}
+
 window.addEventListener('load', initPage);
 
 var timeout;
+var minorTimeout;
 var releaseDate;
 //var releaseDate = sorry, can't talk about it;
+var minorCountdowns = [
+  "2015-07-17T09:00:00-07:00",
+  "2015-07-20T09:00:00-07:00",
+  "2015-07-22T09:00:00-07:00",
+  "2015-07-24T09:00:00-07:00",
+  "2015-07-27T09:00:00-07:00",
+  "2015-07-29T09:00:00-07:00",
+  "2015-07-31T09:00:00-07:00"
+];
 
 // Long list of images
 // 'img/' gets added on automatically

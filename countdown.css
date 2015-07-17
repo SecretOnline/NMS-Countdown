@@ -1,4 +1,4 @@
-h1, h2 {
+h1, h2, h3 {
   font-family: geosanslight-nmsregular, 'Open Sans', Helvetica, Verdana, Arial, sans-serif;
 }
 body {
@@ -64,7 +64,7 @@ main, aside {
 }
 .main-container {
   position: relative;
-  top: 40vh;
+  top: 30vh;
   color: white;
   background-color: rgba(0, 0, 0, .5);
   padding: 10px 0;
