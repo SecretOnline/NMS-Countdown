@@ -55,23 +55,23 @@ function setCountdown() {
     if (timeDiff > 0) {
       // Javascript doesn't have a nice way of formatting numbers
       // Instead wwe end up with stacks of code like this.
-      var days = Math.ceil(timeDiff / 86400000).toString();
+      var days = Math.floor(timeDiff / 86400000).toString();
       if (days < 10)
         days = '0' + days;
       timeDiff %= 86400000;
-      var hours = Math.ceil(timeDiff / 3600000).toString();
+      var hours = Math.floor(timeDiff / 3600000).toString();
       if (hours < 10)
         hours = '0' + hours;
       timeDiff %= 3600000;
-      var minutes = Math.ceil(timeDiff / 60000).toString();
+      var minutes = Math.floor(timeDiff / 60000).toString();
       if (minutes < 10)
         minutes = '0' + minutes;
       timeDiff %= 60000;
-      var seconds = Math.ceil(timeDiff / 1000).toString();
+      var seconds = Math.floor(timeDiff / 1000).toString();
       if (seconds < 10)
         seconds = '0' + seconds;
       timeDiff %= 1000;
-      var centiSecs = Math.ceil(timeDiff / 10).toString(); // Bet you've never seen a centisecond be used before...
+      var centiSecs = Math.floor(timeDiff / 10).toString(); // Bet you've never seen a centisecond be used before...
       if (centiSecs < 10)
         centiSecs = '0' + centiSecs;
 
@@ -99,15 +99,21 @@ var releaseDate;
 var data_images = [
   'AlpineFly.png',
   'Becron5.png',
+  'BlueSpace.png',
   'Creature.png',
   'Diplo.png',
   'Fleet.png',
   'GlattrecSystem.png',
   'NewEridu.png',
+  'NightDrone.png',
   'NoMansSky_GalacticMap.png',
   'NoMansSky_Monolith.png',
   'NoMansSky_SpaceStationTube.png',
+  'OvalWalker.png',
+  'RedSpace.png',
+  'SunsetBots.png',
   'station1.jpg',
   'station2.jpg',
-  'station3.jpg'
+  'station3.jpg',
+  'logo.png'
 ];
