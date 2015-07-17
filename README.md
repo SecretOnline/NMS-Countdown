@@ -1,5 +1,7 @@
 #No Man's Sky Countdown
 
+[Visible on GitHub pages](http://secretonline.github.io/NMS-Countdown).
+
 A countdown until No Man's Sky is released.
 
 Well, it would be a countdown if we knew the release date. As soon as we have a date, we will have a countdown.
