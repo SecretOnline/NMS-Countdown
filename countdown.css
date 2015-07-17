@@ -1,6 +1,10 @@
 h1, h2, h3 {
   font-family: geosanslight-nmsregular, 'Open Sans', Helvetica, Verdana, Arial, sans-serif;
 }
+.countdown, .minor-countdown {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+}
 body {
   margin: 0;
   overflow: hidden;
