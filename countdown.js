@@ -7,11 +7,18 @@ function initPage() {
     body.classList.toggle('open');
   }
 
+  // Add fonts in later, to prevent render blocking
   var currStyle = $('link[rel="stylesheet"]');
-  var fonts = document.createElement('link');
-  fonts.rel = 'stylesheet';
-  fonts.href = 'fonts.css';
-  currStyle.parentNode.insertBefore(fonts, currStyle);
+  var geoSans = document.createElement('link');
+  geoSans.rel = 'stylesheet';
+  geoSans.href = 'fonts.css';
+  geoSans.type = 'text/css';
+  currStyle.parentNode.insertBefore(geoSans, currStyle);
+  var robotoMono = document.createElement('link');
+  robotoMono.rel = 'stylesheet';
+  robotoMono.href = 'http://fonts.googleapis.com/css?family=Roboto+Mono:300';
+  robotoMono.type = 'text/css';
+  currStyle.parentNode.insertBefore(robotoMono, currStyle);
 
   var ircContainer = $('.ircContainer');
   ircContainer.innerHTML = '<iframe src="https://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky" class="irc"></iframe>';
