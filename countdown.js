@@ -1,3 +1,6 @@
+/**
+ * Get everything ready
+ */
 function initPage() {
   var $ = document.querySelector.bind(document);
   var body = $('body');
@@ -20,13 +23,16 @@ function initPage() {
   robotoMono.type = 'text/css';
   currStyle.parentNode.insertBefore(robotoMono, currStyle);
 
+  // Set up button
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
 
+  // Load in images, and get them changing every 60 seconds
   preloadImages();
   setInterval(changeImage, 60000);
   changeImage();
 
+  // Set up countdowns
   timeout = setInterval(setCountdown, 10);
   minorTimeout = setInterval(setMinorCountdown, 10);
 }
@@ -43,6 +49,9 @@ function preloadImages() {
   });
 }
 
+/**
+ * Set the background to a random image
+ */
 function changeImage() {
   var $ = document.querySelector.bind(document);
   var bgElement = $('.bg');
@@ -50,19 +59,25 @@ function changeImage() {
   bgElement.classList.remove('fadeout');
   bgElement.style.opacity = 1; // Manually specify opacity
   bgElement.style.backgroundImage = body.style.backgroundImage;
+
+  body.style.backgroundImage = 'url(' + nextImage() + ')';
+  // Start the crossfade after 100ms
   setTimeout(function() {
     bgElement.classList.add('fadeout');
     bgElement.style.opacity = ''; // Remove overly-specific rule to allow animation to work
   }, 100);
-
-  body.style.backgroundImage = 'url(' + nextImage() + ')';
-
 }
 
+/**
+ * Return the source for a random image
+ */
 function nextImage() {
   return images[Math.floor(Math.random() * data_images.length)].src;
 }
 
+/**
+ * Update the countdown text, if a value exists
+ */
 function setCountdown() {
   var cd = document.querySelector('.countdown');
   if (typeof releaseDate !== 'undefined') {
@@ -84,6 +99,9 @@ function setCountdown() {
   }
 }
 
+/**
+ * Update the secondry countdown
+ */
 function setMinorCountdown() {
   var setTime = false;
   var cd = document.querySelector('.minor-countdown');
@@ -102,6 +120,9 @@ function setMinorCountdown() {
   }
 }
 
+/**
+ * Return a string in the format dd:hh:mm:ss:ms from a number of milliseconds
+ */
 function toCountdownString(millis) {
   // Javascript doesn't have a nice way of formatting numbers
   // Instead wwe end up with stacks of code like this.

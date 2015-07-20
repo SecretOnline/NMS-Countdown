@@ -12,5 +12,7 @@ IRC icon from Google's [Material Design Icons](https://www.google.com/design/ico
 
 GeoSans NMS was taken from the official [No Man's Sky website](http://www.no-mans-sky.com/about/). If someone knows who to credit for this, I would be happy to acknowledge them here.
 
+[Roboto Mono](https://www.google.com/fonts/specimen/Roboto+Mono) is being used as the typeface for the countdowns. [License](https://github.com/google/fonts/blob/master/apache/robotomono/LICENSE.txt) is available to read.
+
 Background images are from the [No Man's Sky website](http://www.no-mans-sky.com/about/) as well, as part of the [Press Release kit](http://no-mans-sky.com/press/sheet.php?p=no_man%27s_sky#images).  
 There are also a few screenshots of the space stations taken from one of the videos IGN released as part of IGN First July, where they looked at No Man's Sky.

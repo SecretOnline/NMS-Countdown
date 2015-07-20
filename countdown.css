@@ -34,6 +34,7 @@ header {
   background-color: #7FBC4A;
   color: white;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
+  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 header h1 {
   max-height: 60px;
@@ -50,16 +51,20 @@ header button {
   position: fixed;
   top: 0;
   left: calc(100vw - 60px);
+  -webkit-tap-highlight-color: transparent;
 }
-header button:hover {
+header svg:hover {
   background-color: rgba(255, 255, 255, .2);
 }
-header button:active {
+header svg:active {
   background-color: rgba(255, 255, 255, .4);
 }
-header button img {
-  width: 20px;
-  height: 20px;
+header button svg {
+  height: 24px;
+  width: 24px;
+  padding: 18px;
+  fill: white;
+  transition: fill 0.3s ease-out;
 }
 main, aside {
   position: absolute;
@@ -136,17 +141,28 @@ aside h2 {
   }
 }
 @media all and (min-width: 920px) {
+  .open header {
+    background-color: rgba(127, 188, 74, 0);
+    color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .3);
+  }
+  .open header button svg {
+    fill: #000000;
+  }
   .open main {
-    width: 67vw;
+    width: 50vw;
   }
   aside {
-    width: calc(33vw - 2px);
+    width: calc(50vw - 2px);
+    padding-top: 0;
+    height: 100vh;
+    max-height: 100vh;
   }
   .open aside {
-    -webkit-transform: translateX(67vw);
-    -moz-transform: translateX(67vw);
-    -ms-transform: translateX();
-    -o-transform: translateX(67vw);
-    transform: translateX(67vw);
+    -webkit-transform: translateX(50vw);
+    -moz-transform: translateX(50vw);
+    -ms-transform: translateX(50vw);
+    -o-transform: translateX(50vw);
+    transform: translateX(50vw);
   }
 }
