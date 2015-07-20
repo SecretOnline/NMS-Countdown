@@ -20,9 +20,6 @@ function initPage() {
   robotoMono.type = 'text/css';
   currStyle.parentNode.insertBefore(robotoMono, currStyle);
 
-  var ircContainer = $('.ircContainer');
-  ircContainer.innerHTML = '<iframe src="https://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky" class="irc"></iframe>';
-
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
 
@@ -32,6 +29,8 @@ function initPage() {
 
   timeout = setInterval(setCountdown, 10);
   minorTimeout = setInterval(setMinorCountdown, 10);
+
+  console.log('test');
 }
 
 /**
@@ -131,7 +130,7 @@ function toCountdownString(millis) {
   return days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
 }
 
-window.addEventListener('load', initPage);
+window.addEventListener('DOMContentLoaded', initPage);
 
 var timeout;
 var minorTimeout;
