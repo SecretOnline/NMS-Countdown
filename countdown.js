@@ -29,8 +29,6 @@ function initPage() {
 
   timeout = setInterval(setCountdown, 10);
   minorTimeout = setInterval(setMinorCountdown, 10);
-
-  console.log('test');
 }
 
 /**
