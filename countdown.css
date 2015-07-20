@@ -143,6 +143,7 @@ aside h2 {
 @media all and (min-width: 920px) {
   .open header {
     background-color: rgba(127, 188, 74, 0);
+    color: rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .3);
   }
   .open header button svg {
