@@ -26,11 +26,24 @@ function initPage() {
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
 
+  preloadImages();
   setInterval(changeImage, 60000);
   changeImage();
 
   timeout = setInterval(setCountdown, 10);
   minorTimeout = setInterval(setMinorCountdown, 10);
+}
+
+/**
+ * Loads all background images, and puts
+ * them in an array for future use
+ */
+function preloadImages() {
+  data_images.forEach(function(image) {
+    var newImg = document.createElement('img');
+    newImg.src = 'img/' + image;
+    images.push(newImg);
+  });
 }
 
 function changeImage() {
@@ -43,14 +56,14 @@ function changeImage() {
   setTimeout(function() {
     bgElement.classList.add('fadeout');
     bgElement.style.opacity = ''; // Remove overly-specific rule to allow animation to work
-  }, 1000);
+  }, 100);
 
-  body.style.backgroundImage = 'url(img/' + nextImage() + ')';
+  body.style.backgroundImage = 'url(' + nextImage() + ')';
 
 }
 
 function nextImage() {
-  return data_images[Math.floor(Math.random() * data_images.length)];
+  return images[Math.floor(Math.random() * data_images.length)].src;
 }
 
 function setCountdown() {
@@ -133,6 +146,8 @@ var minorCountdowns = [
   "2015-07-29T09:00:00-07:00",
   "2015-07-31T09:00:00-07:00"
 ];
+
+var images = [];
 
 // Long list of images
 // 'img/' gets added on automatically
