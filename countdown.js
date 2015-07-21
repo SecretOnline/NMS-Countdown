@@ -75,34 +75,8 @@ function nextImage() {
 }
 
 /**
- * Return a string in the format dd:hh:mm:ss:ms from a number of milliseconds
+ * Initialise all of the countdowns
  */
-function toCountdownString(millis) {
-  // Javascript doesn't have a nice way of formatting numbers
-  // Instead wwe end up with stacks of code like this.
-  var days = Math.floor(millis / 86400000).toString();
-  if (days < 10)
-    days = '0' + days;
-  millis %= 86400000;
-  var hours = Math.floor(millis / 3600000).toString();
-  if (hours < 10)
-    hours = '0' + hours;
-  millis %= 3600000;
-  var minutes = Math.floor(millis / 60000).toString();
-  if (minutes < 10)
-    minutes = '0' + minutes;
-  millis %= 60000;
-  var seconds = Math.floor(millis / 1000).toString();
-  if (seconds < 10)
-    seconds = '0' + seconds;
-  millis %= 1000;
-  var centiSecs = Math.floor(millis / 10).toString(); // Bet you've never seen a centisecond be used before...
-  if (centiSecs < 10)
-    centiSecs = '0' + centiSecs;
-
-  return days + ':' + hours + ':' + minutes + ':' + seconds + ':' + centiSecs;
-}
-
 function createCountdowns() {
   var mainContainer = document.querySelector('.main-container');
   mainContainer.innerHTML = '';
@@ -116,9 +90,10 @@ function createCountdowns() {
     titleElement.innerHTML = countdowns[i].title;
     container.classList.add('countdown-container');
     container.classList.add('center');
+    titleElement.classList.add('center');
     countElement.classList.add('countdown');
     countElement.classList.add('center');
-    titleElement.classList.add('center');
+    countElement.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
     container.appendChild(titleElement);
     container.appendChild(countElement);
     // If there are countdowns, find which one to use
@@ -139,7 +114,7 @@ function createCountdowns() {
 
         countdowns[i].interval = setInterval(function() {
           updateCountdown(countdowns[arrayIndex]);
-        }, 10);
+        }, 7); // Slight cheat: Run every 7ms. Won't even be noticable
       } else {
         // Show the finished text
         countElement.innerHTML = countdowns[i].endText;
@@ -158,24 +133,69 @@ function createCountdowns() {
 
 function updateCountdown(countdown) {
   var timeDiff = new Date(countdown.times[countdown.currTime]).getTime() - Date.now(); // What a mouthful.
-  var countdownElement = countdown.container.querySelector('.countdown');
-  if (timeDiff > 0)
-    countdownElement.innerHTML = toCountdownString(timeDiff);
-  else {
+  var cd = countdown.container.querySelector('.countdown');
+  // Basically, for each interval (starting at ms), check if it overflowed.
+  // If so, update the next interval.
+  // Format numbers into a 2 (or 3) character string, and display.
+  if (timeDiff > 0) {
+    var ms = Math.floor(timeDiff % 1000);
+    if (!countdown.oldMs || cs < countdown.oldMs) {
+      var s = Math.floor((timeDiff % 60000) / 1000);
+      if (!countdown.oldS || s < countdown.oldS) {
+        var m = Math.floor((timeDiff % 3600000) / 60000);
+        if (!countdown.oldM || m < countdown.oldM) {
+          var h = Math.floor((timeDiff % 86400000) / 3600000);
+          if (!countdown.oldH || h < countdown.oldH) {
+            var d = Math.floor(timeDiff / 86400000).toString();
+            if (d < 10)
+              d = '0' + d;
+            cd.querySelector('.d').innerHTML = d;
+          }
+          countdown.oldH = h;
+          h = h.toString();
+          if (h < 10)
+            h = '0' + h;
+          cd.querySelector('.h').innerHTML = h;
+        }
+        countdown.oldM = m;
+        m = m.toString();
+        if (m < 10)
+          m = '0' + m;
+        cd.querySelector('.m').innerHTML = m;
+      }
+      countdown.oldS = s;
+      s = s.toString();
+      if (s < 10)
+        s = '0' + s;
+      cd.querySelector('.s').innerHTML = s;
+    }
+    countdown.oldMS = ms;
+    ms = ms.toString();
+    if (ms < 100)
+      ms = '0' + ms;
+    if (ms < 10)
+      ms = '0' + ms;
+    cd.querySelector('.ms').innerHTML = ms;
+  } else {
     // Countdown finished. Show end text for a minute
-    countdownElement.innerHTML = countdown.endText;
+    cd.innerHTML = countdown.endText;
     window.clearInterval(countdown.interval);
     setTimeout(function() {
       if (countdown.currTime + 1 < countdown.times.length) {
         countdown.currTime++;
-        countdowns[i].interval = setInterval(function() {
+        cd.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
+        countdown.interval = setInterval(function() {
           updateCountdown(countdown);
-        }, 10);
+        }, 7);
       }
     }, 60000);
   }
 }
 
+/**
+ * Mainly to stop browser throwing several hundred errors every second
+ * I'm going to leave this in in case someone wants to stop the clock.
+ */
 function stopAllCountdowns() {
   countdowns.forEach(function(cd) {
     if (cd.interval)
