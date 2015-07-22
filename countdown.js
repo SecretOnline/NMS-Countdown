@@ -108,13 +108,6 @@ function createCountdowns() {
       if (typeof countdowns[i].currTime !== 'undefined') {
         mainContainer.appendChild(container);
         countdowns[i].container = container;
-
-        // Must have a separate reference, or 'i' gets updated, and countdowns don't happen.
-        var arrayIndex = i;
-
-        countdowns[i].interval = setInterval(function() {
-          updateCountdown(countdowns[arrayIndex]);
-        }, 7); // Slight cheat: Run every 7ms. Won't even be noticable
       } else {
         // Show the finished text
         countElement.innerHTML = countdowns[i].endText;
@@ -129,6 +122,13 @@ function createCountdowns() {
       }
     }
   }
+
+  interval = setInterval(function() {
+    countdowns.forEach(function(countdown) {
+      if (typeof countdown.currTime !== 'undefined')
+        updateCountdown(countdown);
+    });
+  }, 7);
 }
 
 function updateCountdown(countdown) {
@@ -179,14 +179,13 @@ function updateCountdown(countdown) {
   } else {
     // Countdown finished. Show end text for a minute
     cd.innerHTML = countdown.endText;
+    countdown.oldTime = countdown.currTime;
+    countdown.currTime = null;
     window.clearInterval(countdown.interval);
     setTimeout(function() {
-      if (countdown.currTime + 1 < countdown.times.length) {
-        countdown.currTime++;
+      if (countdown.oldTime + 1 < countdown.times.length) {
+        countdown.currTime = countdown.oldTime + 1;
         cd.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
-        countdown.interval = setInterval(function() {
-          updateCountdown(countdown);
-        }, 7);
       }
     }, 60000);
   }
@@ -197,10 +196,8 @@ function updateCountdown(countdown) {
  * I'm going to leave this in in case someone wants to stop the clock.
  */
 function stopAllCountdowns() {
-  countdowns.forEach(function(cd) {
-    if (cd.interval)
-      window.clearInterval(cd.interval);
-  });
+  if (interval)
+    window.clearInterval(interval);
 }
 
 window.addEventListener('DOMContentLoaded', initPage);
@@ -224,6 +221,8 @@ var countdowns = [
     ]
   }
 ];
+
+var interval;
 
 var images = [];
 
