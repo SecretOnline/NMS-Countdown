@@ -236,6 +236,9 @@ var data_images = [
   'Diplo.png',
   'Fleet.png',
   'GlattrecSystem.png',
+  'IGNPlanet1.png',
+  'IGNPlanet2.png',
+  'IGNPlanet3.png',
   'NewEridu.png',
   'NightDrone.png',
   'NoMansSky_GalacticMap.png',
@@ -247,5 +250,6 @@ var data_images = [
   'station1.jpg',
   'station2.jpg',
   'station3.jpg',
+  'station4.jpg',
   'logo.png'
 ];
