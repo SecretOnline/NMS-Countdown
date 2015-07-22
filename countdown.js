@@ -183,7 +183,7 @@ function updateCountdown(countdown) {
     countdown.currTime = null;
     window.clearInterval(countdown.interval);
     setTimeout(function() {
-      if (countdown.currTime + 1 < countdown.times.length) {
+      if (countdown.oldTime + 1 < countdown.times.length) {
         countdown.currTime = countdown.oldTime + 1;
         cd.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
       }
