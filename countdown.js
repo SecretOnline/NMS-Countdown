@@ -22,6 +22,11 @@ function initPage() {
   robotoMono.href = 'http://fonts.googleapis.com/css?family=Roboto+Mono:300';
   robotoMono.type = 'text/css';
   currStyle.parentNode.insertBefore(robotoMono, currStyle);
+  var raleway = document.createElement('link');
+  raleway.rel = 'stylesheet';
+  raleway.href = 'http://fonts.googleapis.com/css?family=Raleway';
+  raleway.type = 'text/css';
+  currStyle.parentNode.insertBefore(raleway, currStyle);
 
   // Set up button
   var ircButton = $('.ircButton');
@@ -34,6 +39,10 @@ function initPage() {
 
   // Set up countdowns
   createCountdowns();
+  var artist = document.createElement('h4');
+  artist.classList.add('artist');
+  artist.classList.add('center');
+  $('.main-container').appendChild(artist);
 }
 
 /**
@@ -51,7 +60,7 @@ function preloadImages() {
 /**
  * Set the background to a random image
  */
-function changeImage() {
+function changeImage(bgIndex) {
   var $ = document.querySelector.bind(document);
   var bgElement = $('.bg');
   var body = $('body');
@@ -59,19 +68,33 @@ function changeImage() {
   bgElement.style.opacity = 1; // Manually specify opacity
   bgElement.style.backgroundImage = body.style.backgroundImage;
 
-  body.style.backgroundImage = 'url(' + nextImage() + ')';
+  if (typeof bgIndex === 'undefined' || bgIndex >= data_images.length)
+    bgIndex = nextImageIndex();
+
+  var image = data_images[bgIndex];
+  if (image.artist)
+    body.style.backgroundImage = 'url(img/' + image.src + ')';
+  else
+    body.style.backgroundImage = 'url(img/' + image + ')';
   // Start the crossfade after 100ms
   setTimeout(function() {
+    if (image.artist)
+      $('.artist').innerHTML = 'Artist: ' + image.artist;
+    else {
+      $('.artist').innerHTML = '';
+    }
     bgElement.classList.add('fadeout');
     bgElement.style.opacity = ''; // Remove overly-specific rule to allow animation to work
   }, 100);
+
+  return bgIndex;
 }
 
 /**
  * Return the source for a random image
  */
-function nextImage() {
-  return images[Math.floor(Math.random() * data_images.length)].src;
+function nextImageIndex() {
+  return Math.floor(Math.random() * data_images.length);
 }
 
 /**
@@ -234,8 +257,22 @@ var data_images = [
   'BlueSpace.png',
   'Creature.png',
   'Diplo.png',
-  'fan1.jpg',
-  'fan2.jpg',
+  {
+    src: 'fan1.jpg',
+    artist: '/u/Battlefront528'
+  },
+  {
+    src: 'fan2.jpg',
+    artist: '/u/NoMansSciFi (Combined screenshots)'
+  },
+  {
+    src: 'fan3.jpg',
+    artist: '/u/DurMan667'
+  },
+  {
+    src: 'fan4.jpg',
+    artist: '/u/PepsiTetraHepta'
+  },
   'Fleet.png',
   'GlattrecSystem.png',
   'IGN1.jpg',
