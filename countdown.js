@@ -236,6 +236,7 @@ var data_images = [
   'Diplo.png',
   'fan1.jpg',
   'fan2.jpg',
+  'fan3.jpg',
   'Fleet.png',
   'GlattrecSystem.png',
   'IGN1.jpg',
