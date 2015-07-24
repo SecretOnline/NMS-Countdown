@@ -269,6 +269,10 @@ var data_images = [
     src: 'fan3.jpg',
     artist: '/u/DurMan667'
   },
+  {
+    src: 'fan4.jpg',
+    artist: '/u/PepsiTetraHepta'
+  },
   'Fleet.png',
   'GlattrecSystem.png',
   'IGN1.jpg',
