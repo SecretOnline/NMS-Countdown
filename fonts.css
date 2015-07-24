@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'geosanslight-nmsregular';
-  src: url('http://www.no-mans-sky.com/elk/wp-content/themes/nomanssky/fonts/geonms-webfont.eot');
-  src: url('http://www.no-mans-sky.com/elk/wp-content/themes/nomanssky/fonts/geonms-webfont.eot?#iefix') format('embedded-opentype'), url('http://www.no-mans-sky.com/elk/wp-content/themes/nomanssky/fonts/geonms-webfont.woff') format('woff'), url('http://www.no-mans-sky.com/elk/wp-content/themes/nomanssky/fonts/geonms-webfont.ttf') format('truetype'), url('http://www.no-mans-sky.com/elk/wp-content/themes/nomanssky/fonts/geonms-webfont.svg#geosanslight-nmsregular') format('svg');
+  src: url('/fonts/geonms-webfont.eot');
+  src: url('/fonts/geonms-webfont-iefix.eot') format('embedded-opentype'), url('/fonts/geonms-webfont.woff') format('woff'), url('/fonts/geonms-webfont.ttf') format('truetype'), url('/fonts/geonms-webfont.svg#geosanslight-nmsregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
