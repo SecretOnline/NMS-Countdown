@@ -32,6 +32,9 @@ function initPage() {
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
 
+  if (window.location.hash === '#irc')
+    body.classList.add('open');
+
   // Load in images, and get them changing every 60 seconds
   preloadImages();
   setInterval(changeImage, 60000);
