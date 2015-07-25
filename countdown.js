@@ -36,7 +36,7 @@ function initPage() {
     body.classList.add('open');
 
   // Load in images, and get them changing every 60 seconds
-  preloadImages();
+  // preloadImages(); // Image loading will occur once initial page content has loaded.
   setInterval(changeImage, 60000);
   changeImage();
 
@@ -227,6 +227,7 @@ function stopAllCountdowns() {
 }
 
 window.addEventListener('DOMContentLoaded', initPage);
+window.addEventListener('load', preloadImages);
 
 var countdowns = [
   {
@@ -275,6 +276,18 @@ var data_images = [
   {
     src: 'fan4.jpg',
     artist: '/u/PepsiTetraHepta'
+  },
+  {
+    src: 'fan5.jpg',
+    artist: '/u/secret_online'
+  },
+  {
+    src: 'fan6.jpg',
+    artist: '/u/ChrisDNorris'
+  },
+  {
+    src: 'fan7.jpg',
+    artist: '/u/betrion'
   },
   'Fleet.png',
   'GlattrecSystem.png',
