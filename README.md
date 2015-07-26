@@ -21,4 +21,4 @@ GeoSans NMS was taken from the official [No Man's Sky website](http://www.no-man
 
 Background images are from the [No Man's Sky website](http://www.no-mans-sky.com/about/) as well, as part of the [Press Release kit](http://no-mans-sky.com/press/sheet.php?p=no_man%27s_sky#images).  
 There are also a few screenshots of the space stations taken from one of the videos IGN released as part of IGN First July, where they looked at No Man's Sky.  
-Other images have been made by fans of the game, and posted to [/r/NoMansSkeTheGame](https://reddit.com/r/NoMansSkeTheGame). Artist recognition is given below the countdowns whenever it's used as a background.
+Other images have been made by fans of the game, and posted to [/r/NoMansSkyTheGame](https://reddit.com/r/NoMansSkyTheGame). Artist recognition is given below the countdowns whenever it's used as a background.
