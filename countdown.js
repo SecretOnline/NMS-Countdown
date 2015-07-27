@@ -55,7 +55,10 @@ function initPage() {
 function preloadImages() {
   data_images.forEach(function(image) {
     var newImg = document.createElement('img');
-    newImg.src = 'img/' + image;
+    if (image.src)
+      newImg.src = 'img/' + image.src;
+    else
+      newImg.src = 'img/' + image;
     images.push(newImg);
   });
 }
@@ -207,7 +210,6 @@ function updateCountdown(countdown) {
     cd.innerHTML = countdown.endText;
     countdown.oldTime = countdown.currTime;
     countdown.currTime = null;
-    window.clearInterval(countdown.interval);
     setTimeout(function() {
       if (countdown.oldTime + 1 < countdown.times.length) {
         countdown.currTime = countdown.oldTime + 1;
