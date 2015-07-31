@@ -237,17 +237,6 @@ var countdowns = [
     endText: 'No Man\'s Sky Has Been Released',
     noText: 'Really Soon<sup>tm</sup>',
     times: []
-  },
-  {
-    title: 'Next IGN Release',
-    endText: 'New Video on IGN',
-    times: [
-      "2015-07-22T09:00:00-07:00",
-      "2015-07-24T09:00:00-07:00",
-      "2015-07-27T09:00:00-07:00",
-      "2015-07-29T09:00:00-07:00",
-      "2015-07-31T09:00:00-07:00"
-    ]
   }
 ];
 
@@ -290,6 +279,10 @@ var data_images = [
   {
     src: 'fan7.jpg',
     artist: '/u/betrion'
+  },
+  {
+    src: 'fan8.jpg',
+    artist: '/u/phobox91'
   },
   'Fleet.png',
   'GlattrecSystem.png',
