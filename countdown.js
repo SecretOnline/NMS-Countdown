@@ -231,14 +231,18 @@ function stopAllCountdowns() {
 window.addEventListener('DOMContentLoaded', initPage);
 window.addEventListener('load', preloadImages);
 
-var countdowns = [
-  {
-    title: 'Countdown to No Man\'s Sky',
-    endText: 'No Man\'s Sky Has Been Released',
-    noText: 'Really Soon<sup>tm</sup>',
-    times: []
-  }
-];
+var countdowns = [{
+  title: 'Countdown to No Man\'s Sky',
+  endText: 'No Man\'s Sky Has Been Released',
+  noText: 'Really Soon<sup>tm</sup>',
+  times: []
+}, {
+  title: 'Late Show with Colbert',
+  endText: 'Tune your tellies, start your streams.',
+  times: [
+    "2015-10-03T03:35"
+  ]
+}];
 
 var interval;
 
