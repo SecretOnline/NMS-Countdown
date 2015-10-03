@@ -238,9 +238,10 @@ var countdowns = [{
   times: []
 }, {
   title: 'New Yorker Festival - No Man\'s Sky',
-  endText: 'Remember, no stream on Periscope anymore. Thanks, New Yorker...',
+  endText: 'New Yorker event has completed',
   times: [
-    "2015-10-03T19:00-04:00"
+    "2015-10-03T19:00-04:00",
+    "2015-10-03T20:30-04:00"
   ]
 }];
 
