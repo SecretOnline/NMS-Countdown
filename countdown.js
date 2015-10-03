@@ -237,7 +237,7 @@ var countdowns = [{
   noText: 'It\'s a secret<sup>tm</sup>',
   times: []
 }, {
-  title: 'New Yorker Festival - No Man\'s Sky',
+  title: 'New Yorker Festival - No Man\'s Sky - Time Remaining',
   endText: 'New Yorker event has completed',
   times: [
     "2015-10-03T19:00-04:00",
