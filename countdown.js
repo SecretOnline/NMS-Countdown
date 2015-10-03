@@ -234,11 +234,11 @@ window.addEventListener('load', preloadImages);
 var countdowns = [{
   title: 'Countdown to No Man\'s Sky',
   endText: 'No Man\'s Sky Has Been Released',
-  noText: 'Really Soon<sup>tm</sup>',
+  noText: 'It\'s a secret<sup>tm</sup>',
   times: []
 }, {
   title: 'New Yorker Festival - No Man\'s Sky',
-  endText: 'Raise your periscopes',
+  endText: 'Remember, no stream on Periscope anymore. Thanks, New Yorker...',
   times: [
     "2015-10-03T19:00-04:00"
   ]
