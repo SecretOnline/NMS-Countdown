@@ -236,6 +236,12 @@ var countdowns = [{
   endText: 'No Man\'s Sky Has Been Released',
   noText: 'Really Soon<sup>tm</sup>',
   times: []
+}, {
+  title: 'New Yorker Festival - No Man\'s Sky',
+  endText: 'Raise your periscopes',
+  times: [
+    "2015-10-03T19:00-04:00"
+  ]
 }];
 
 var interval;
