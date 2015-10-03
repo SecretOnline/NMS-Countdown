@@ -240,7 +240,7 @@ var countdowns = [{
   title: 'Late Show with Colbert',
   endText: 'Tune your tellies, start your streams.',
   times: [
-    "2015-10-03T03:35"
+    "2015-10-03T03:35+00:00"
   ]
 }];
 
