@@ -237,11 +237,16 @@ var countdowns = [{
   noText: 'It\'s a secret<sup>tm</sup>',
   times: []
 }, {
-  title: 'New Yorker Festival - No Man\'s Sky - Time Remaining',
-  endText: 'New Yorker event has completed',
+  title: 'GameCity Festival',
+  endText: 'No Man\'s Saturday is here!',
   times: [
-    "2015-10-03T19:00-04:00",
-    "2015-10-03T20:30-04:00"
+    "2015-10-24T10:00+01:00"
+  ]
+}, {
+  title: 'Paris Games Week - Sony Conference',
+  endText: 'No Man\'s Saturday is here!',
+  times: [
+    "2015-10-27T17:00+00:00"
   ]
 }];
 
