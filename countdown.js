@@ -244,7 +244,7 @@ var countdowns = [{
   ]
 }, {
   title: 'Paris Games Week - Sony Conference',
-  endText: 'No Man\'s Saturday is here!',
+  endText: 'Sony on stage!',
   times: [
     "2015-10-27T17:00+00:00"
   ]
