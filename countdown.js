@@ -122,7 +122,7 @@ function createCountdowns() {
     titleElement.classList.add('center');
     countElement.classList.add('countdown');
     countElement.classList.add('center');
-    countElement.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
+    countElement.innerHTML = '<span class="d"></span>d:<span class="h"></span>h:<span class="m"></span>m:<span class="s"></span>s:<span class="ms"></span>';
     container.appendChild(titleElement);
     container.appendChild(countElement);
     // If there are countdowns, find which one to use
