@@ -239,9 +239,8 @@ var countdowns = [{
 }, {
   title: 'GameCity Festival',
   endText: 'No Man\'s Saturday is here!',
-  times: [
-    "2015-10-24T10:00+01:00"
-  ]
+  noText: 'No Man\'s Saturday has been Postponed',
+  times: []
 }, {
   title: 'Paris Games Week - Sony Conference',
   endText: 'Sony on stage!',
