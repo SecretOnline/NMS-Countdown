@@ -1,7 +1,12 @@
-h1, h2, h3, h4, noscript {
+h1,
+h2,
+h3,
+h4,
+noscript {
   font-family: geosanslight-nmsregular, 'Open Sans', Helvetica, Verdana, Arial, sans-serif;
 }
-.countdown, .minor-countdown {
+.countdown,
+.minor-countdown {
   font-family: 'Roboto Mono', monospace;
   font-weight: 300;
 }
@@ -31,7 +36,7 @@ header {
   overflow: hidden;
   height: 60px;
   width: 100%;
-  background-color: #7FBC4A;
+  background-color: #7fbc4a;
   color: white;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
   transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
@@ -78,7 +83,8 @@ header button svg:active {
 .github svg path {
   transform: scale(0.024);
 }
-main, aside {
+main,
+aside {
   position: absolute;
   top: 0;
   padding-top: 60px;
@@ -112,8 +118,8 @@ aside {
   width: calc(100vw - 2px);
   height: calc(100vh - 60px);
   max-height: calc(100vh - 60px);
-  border-left: 2px solid #7FBC4A;
-  background-color: #F7F7F7;
+  border-left: 2px solid #7fbc4a;
+  background-color: #f7f7f7;
 }
 .open aside {
   -webkit-transform: translateX(0);
@@ -163,7 +169,7 @@ aside h2 {
     right: 0;
   }
   .open header button svg {
-    fill: #000000;
+    fill: #000;
   }
   .open main {
     width: 50vw;
