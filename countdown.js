@@ -69,10 +69,35 @@ function preloadImages() {
  */
 function preloadAudio() {
   data_songs.forEach(function(song) {
-    var newImg = document.createElement('img');
-    newImg.src = 'audio/' + song.src;
-    images.push(newImg);
+    var newAudio = document.createElement('audio');
+    newAudio.src = 'audio/' + song.src;
+    songs.push(newAudio);
   });
+}
+
+function shuffleAudio() {
+  var newPl = [];
+  var tempPl = [];
+  data_songs.forEach(function(song) {
+    tempPl.push(song);
+  });
+  while (tempPl.length > 0) {
+    var index = Math.floor(Math.random() * tempPl.length);
+    newPl.push(tempPl[index]);
+    tempPl.splice(index, 1);
+  }
+
+  playlist = newPl;
+}
+
+function unShuffleAudio() {
+  var newPl = [];
+  data_songs.forEach(function(song) {
+    newPl.push(song);
+  });
+  playlist = newPl;
+}
+
 }
 
 /**
@@ -241,8 +266,8 @@ function stopAllCountdowns() {
 }
 
 window.addEventListener('DOMContentLoaded', initPage);
-window.addEventListener('load', preloadImages);
-window.addEventListener('load', preloadAudio);
+window.addEventListener('DOMContentLoaded', preloadImages);
+window.addEventListener('DOMContentLoaded', preloadAudio);
 
 var countdowns = [{
   title: 'Countdown to No Man\'s Sky',
