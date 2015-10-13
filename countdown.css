@@ -131,6 +131,30 @@ aside {
 aside h2 {
   margin-left: 10px;
 }
+.flap {
+  background: #fff;
+  background: linear-gradient(225deg, transparent 7%, #fff 0) top right;
+  background-repeat: no-repeat;
+  transform-origin: left;
+  transition: transform 0.5s;
+  z-index: 5;
+  opacity: 0.75;
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  padding: 0 10px;
+  min-width: 300px;
+}
+.flap:not(:hover) {
+  -webkit-transform: rotate3d(-9, 13, -.6, 10deg);
+  -moz-transform: rotate3d(-9, 13, -.6, 10deg);
+  -ms-transform: rotate3d(-9, 13, -.6, 10deg);
+  -o-transform: rotate3d(-9, 13, -.6, 10deg);
+  transform: rotate3d(-9, 13, -.6, 10deg);
+}
+.flap .song-controls {
+  margin-left: 50px;
+}
 .ircContainer {
   height: calc(100% - 68px);
 }
