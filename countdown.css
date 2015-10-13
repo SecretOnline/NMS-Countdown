@@ -146,11 +146,11 @@ aside h2 {
   min-width: 300px;
 }
 .flap:not(:hover) {
-  -webkit-transform: rotate3d(-9, 13, -.6, 10deg);
-  -moz-transform: rotate3d(-9, 13, -.6, 10deg);
-  -ms-transform: rotate3d(-9, 13, -.6, 10deg);
-  -o-transform: rotate3d(-9, 13, -.6, 10deg);
-  transform: rotate3d(-9, 13, -.6, 10deg);
+  -webkit-transform: rotate3d(9, 13, .6, 10deg);
+  -moz-transform: rotate3d(9, 13, .6, 10deg);
+  -ms-transform: rotate3d(9, 13, .6, 10deg);
+  -o-transform: rotate3d(9, 13, .6, 10deg);
+  transform: rotate3d(9, 13, .6, 10deg);
 }
 .flap .song-controls {
   margin-left: 50px;
