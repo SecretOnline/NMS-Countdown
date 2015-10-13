@@ -173,22 +173,56 @@ aside h2 {
   -o-transform: rotate3d(9, 13, .6, 10deg);
   transform: rotate3d(9, 13, .6, 10deg);
 }
-.flap .song-controls {
-  margin-left: 50px;
+.flap h2 {
+  margin: 10px 0;
 }
-.flap .song-controls button {
+.song-controls {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.song-controls button,
+.song-controls .icon {
   padding: 0;
-  border: 1px solid black;
-  background-color: rgba(128, 128, 128, 0.5);
-  width: 30px;
-  height: 30px;
+  border: 2px solid #888;
+  display: inline-block;
+}
+.song-controls button {
+  background-color: transparent;
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  box-sizing: content-box;
+  width: 30px;
+  height: 30px;
 }
-.flap .song-controls svg {
+.song-controls button.button-play {
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+}
+.song-controls .button-play svg {
+  padding: 8px;
+}
+.song-controls button:hover {
+  opacity: 1;
+}
+.song-controls svg {
   width: 24px;
   height: 24px;
   padding: 3px;
+  fill: #888;
+}
+.song-progress {
+  width: calc(100% - 8px);
+  height: 10px;
+  padding: 2px;
+  border: 2px solid #888;
+}
+.progress-bar {
+  background-color: #888;
+  height: 10px;
+  width: 50%;
 }
 .ircContainer {
   height: calc(100% - 68px);
