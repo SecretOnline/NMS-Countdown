@@ -64,6 +64,18 @@ function preloadImages() {
 }
 
 /**
+ * Loads all songs, and puts
+ * them in an array for future use
+ */
+function preloadAudio() {
+  data_songs.forEach(function(song) {
+    var newImg = document.createElement('img');
+    newImg.src = 'audio/' + song.src;
+    images.push(newImg);
+  });
+}
+
+/**
  * Set the background to a random image
  */
 function changeImage(bgIndex) {
@@ -230,6 +242,7 @@ function stopAllCountdowns() {
 
 window.addEventListener('DOMContentLoaded', initPage);
 window.addEventListener('load', preloadImages);
+window.addEventListener('load', preloadAudio);
 
 var countdowns = [{
   title: 'Countdown to No Man\'s Sky',
@@ -253,6 +266,10 @@ var interval;
 
 var images = [];
 
+var songs = [];
+var playlist = [];
+var currSongIndex = 0;
+
 // Long list of images
 // 'img/' gets added on automatically
 var data_images = [
@@ -260,36 +277,28 @@ var data_images = [
   'Becron5.png',
   'BlueSpace.png',
   'Creature.png',
-  'Diplo.png',
-  {
+  'Diplo.png', {
     src: 'fan1.jpg',
     artist: '/u/Battlefront528'
-  },
-  {
+  }, {
     src: 'fan2.jpg',
     artist: '/u/NoMansSciFi (Combined screenshots)'
-  },
-  {
+  }, {
     src: 'fan3.jpg',
     artist: '/u/DurMan667'
-  },
-  {
+  }, {
     src: 'fan4.jpg',
     artist: '/u/PepsiTetraHepta'
-  },
-  {
+  }, {
     src: 'fan5.jpg',
     artist: '/u/secret_online'
-  },
-  {
+  }, {
     src: 'fan6.jpg',
     artist: '/u/ChrisDNorris'
-  },
-  {
+  }, {
     src: 'fan7.jpg',
     artist: '/u/betrion'
-  },
-  {
+  }, {
     src: 'fan8.jpg',
     artist: '/u/phobox91'
   },
@@ -319,3 +328,6 @@ var data_images = [
   'station4.png',
   'logo.png'
 ];
+
+var data_songs = [
+]
