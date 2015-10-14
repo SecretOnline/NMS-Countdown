@@ -47,44 +47,19 @@ function initPage() {
   if (window.location.hash === '#irc')
     body.classList.add('open');
 
-  // Load in images, and get them changing every 60 seconds
-  // preloadImages(); // Image loading will occur once initial page content has loaded.
-  setInterval(changeImage, 60000);
-  changeImage();
-
   // Set up countdowns
   createCountdowns();
   var artist = document.createElement('h4');
   artist.classList.add('artist');
   artist.classList.add('center');
   $('.main-container').appendChild(artist);
-}
 
-/**
- * Loads all background images, and puts
- * them in an array for future use
- */
-function preloadImages() {
-  data_images.forEach(function(image) {
-    var newImg = document.createElement('img');
-    if (image.src)
-      newImg.src = 'img/' + image.src;
-    else
-      newImg.src = 'img/' + image;
-    images.push(newImg);
-  });
-}
-
-/**
- * Loads all songs, and puts
- * them in an array for future use
- */
-function preloadAudio() {
-  data_songs.forEach(function(song) {
-    var newAudio = document.createElement('audio');
-    newAudio.src = 'audio/' + song.src;
-    songs.push(newAudio);
-  });
+  // Load in images, and get them changing every 60 seconds
+  // preloadImages(); // Image loading will occur once initial page content has loaded.
+  setInterval(changeImage, 60000);
+  // For whaever reason, I need to do this twice. 
+  changeImage();
+  changeImage();
 }
 
 function shuffleAudio() {
@@ -195,28 +170,31 @@ function changeImage(bgIndex) {
   var $ = document.querySelector.bind(document);
   var bgElement = $('.bg');
   var body = $('body');
-  bgElement.classList.remove('fadeout');
-  bgElement.style.opacity = 1; // Manually specify opacity
-  bgElement.style.backgroundImage = body.style.backgroundImage;
 
-  if (typeof bgIndex === 'undefined' || bgIndex >= data_images.length)
-    bgIndex = nextImageIndex();
+  bgElement.classList.add('fadein');
+  bgElement.style.opacity = ''; // Manually specify opacity
 
-  var image = data_images[bgIndex];
-  if (image.artist)
-    body.style.backgroundImage = 'url(img/' + image.src + ')';
-  else
-    body.style.backgroundImage = 'url(img/' + image + ')';
+  if (typeof bgIndex === 'number' && bgIndex <= data_images.length)
+    nextBgIndex = bgIndex;
+
+  if (data_images[nextBgIndex].artist)
+    $('.artist').innerHTML = 'Artist: ' + data_images[nextBgIndex].artist;
+  else {
+    $('.artist').innerHTML = '';
+  }
   // Start the crossfade after 100ms
   setTimeout(function() {
+    body.style.backgroundImage = bgElement.style.backgroundImage;
+
+    nextBgIndex = nextImageIndex();
+    var image = data_images[nextBgIndex];
     if (image.artist)
-      $('.artist').innerHTML = 'Artist: ' + image.artist;
-    else {
-      $('.artist').innerHTML = '';
-    }
-    bgElement.classList.add('fadeout');
-    bgElement.style.opacity = ''; // Remove overly-specific rule to allow animation to work
-  }, 100);
+      bgElement.style.backgroundImage = 'url(img/' + image.src + ')';
+    else
+      bgElement.style.backgroundImage = 'url(img/' + image + ')';
+    bgElement.classList.remove('fadein');
+    bgElement.style.opacity = 0; // Remove overly-specific rule to allow animation to work
+  }, 1000);
 
   return bgIndex;
 }
@@ -355,8 +333,6 @@ function stopAllCountdowns() {
 
 window.addEventListener('DOMContentLoaded', function() {
   initPage();
-  preloadImages();
-  preloadAudio();
   shuffleAudio();
   changeAudio();
 });
@@ -378,7 +354,7 @@ var interval;
 
 var images = [];
 
-var songs = [];
+var nextBgIndex = 0;
 var playlist = [];
 var currSongIndex = 0;
 var player;
