@@ -329,8 +329,8 @@ function stopAllCountdowns() {
     window.clearInterval(interval);
 }
 
-window.addEventListener('DOMContentLoaded', initPage);
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
+  initPage();
   preloadImages();
   preloadAudio();
   shuffleAudio();
