@@ -119,12 +119,14 @@ function changeAudio() {
     if ($('.play-svg.hidden'))
       player.autoplay = true;
     player.addEventListener('ended', changeAudio);
+    player.addEventListener('timeupdate', changeAudioProgress);
   }
 
   player.src = 'audio/' + playlist[currSongIndex].src;
   $('.song-title').innerHTML = playlist[currSongIndex].title;
   $('.song-artist').innerHTML = playlist[currSongIndex].artist;
   $('.song-artist-link').href = playlist[currSongIndex].artistLink;
+  $('.progress-bar').style.width = 0;
 }
 
 function toggleAudio() {
@@ -146,7 +148,6 @@ function toggleShuffle() {
       shuffleAudio();
     else
       unShuffleAudio();
-  changeAudio();
   shuffleSVG.classList.toggle('hidden');
   repeatSVG.classList.toggle('hidden');
 }
@@ -157,6 +158,10 @@ function volUp() {
 
 function volDown() {
   player.volume -= 0.1;
+}
+
+function changeAudioProgress() {
+  document.querySelector('.progress-bar').style.width = ((player.currentTime / player.duration) * 100) + '%';
 }
 
 /**
