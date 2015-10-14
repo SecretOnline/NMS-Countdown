@@ -180,13 +180,14 @@ aside h2 {
   margin-top: 10px;
   margin-left: 10px;
 }
-.song-controls button,
-.song-controls .icon {
-  padding: 0;
-  border: 2px solid #888;
+.song-controls a {
+  text-decoration: none;
   display: inline-block;
 }
 .song-controls button {
+  padding: 0;
+  border: 2px solid #888;
+  display: inline-block;
   background-color: transparent;
   -webkit-tap-highlight-color: transparent;
   outline: none;
@@ -195,6 +196,7 @@ aside h2 {
   box-sizing: content-box;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 .song-controls button.button-play {
   width: 40px;
