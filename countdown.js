@@ -54,28 +54,34 @@ function initPage() {
   artist.classList.add('center');
   $('.main-container').appendChild(artist);
 
-  // Load in images, and get them changing every 60 seconds
-  // preloadImages(); // Image loading will occur once initial page content has loaded.
+  // Set up background changing
   setInterval(changeImage, 60000);
-  // For whaever reason, I need to do this twice. 
+  // For whaever reason, I need to do this twice.
   changeImage();
   changeImage();
 }
 
+/**
+ * Mix up the playlist, or set it back to straight
+ */
 function shuffleAudio() {
   var newPl = [];
 
+  // If we're shuffling
   if (document.querySelector('.repeat-svg.hidden')) {
+    // Add songs to temporary list
     var tempPl = [];
     data_songs.forEach(function(song) {
       tempPl.push(song);
     });
+    // Take a random song out, put in new list
     while (tempPl.length > 0) {
       var index = Math.floor(Math.random() * tempPl.length);
       newPl.push(tempPl[index]);
       tempPl.splice(index, 1);
     }
   } else {
+    // Put songs in list in order
     data_songs.forEach(function(song) {
       newPl.push(song);
     });
@@ -84,24 +90,33 @@ function shuffleAudio() {
   playlist = newPl;
 }
 
+/**
+ * Change the song to the next one in the list
+ */
 function changeAudio() {
   var $ = document.querySelector.bind(document);
   currSongIndex++;
+  // If we've gone too far, recreate the playlist
   if (currSongIndex == playlist.length) {
     currSongIndex = 0;
     shuffleAudio();
   }
 
+  // If the player doesn't exist yet, create it
   if (!player) {
     player = document.createElement('audio');
+    // Play if autoplay play button is playing
     if ($('.play-svg.hidden'))
       player.autoplay = true;
+    // Set volume if stored
     if (localStorage)
       player.volume = localStorage.getItem('nms-vol') || 0.5;
+    // Add listeners
     player.addEventListener('ended', changeAudio);
     player.addEventListener('timeupdate', changeAudioProgress);
   }
 
+  // Set player source, and artist information
   player.src = 'audio/' + playlist[currSongIndex].src;
   $('.song-title').innerHTML = playlist[currSongIndex].title;
   $('.song-artist').innerHTML = playlist[currSongIndex].artist;
@@ -109,56 +124,83 @@ function changeAudio() {
   $('.progress-bar').style.width = 0;
 }
 
+/**
+ * Toggle play state
+ */
 function toggleAudio() {
   var playSVG = document.querySelector('.play-svg');
   var pauseSVG = document.querySelector('.pause-svg');
+  // If we should play
   if (pauseSVG.classList.contains('hidden')) {
+    // Play is player exists
     if (player)
       player.play();
+    // Store autoplay
     if (localStorage)
       localStorage.setItem('nms-autoplay', true);
   } else {
+    // Pause of player exists
     if (player)
       player.pause();
+    // Remove autoplay from storage
     if (localStorage)
       localStorage.removeItem('nms-autoplay');
   }
+  // Toggle which icon is visible
   playSVG.classList.toggle('hidden');
   pauseSVG.classList.toggle('hidden');
 }
 
+/**
+ * Toggle playlist shuffling
+ */
 function toggleShuffle() {
   var shuffleSVG = document.querySelector('.shuffle-svg');
   var repeatSVG = document.querySelector('.repeat-svg');
+  // Toggle icons
   shuffleSVG.classList.toggle('hidden');
   repeatSVG.classList.toggle('hidden');
 
+  // Store shuffle state
   if (localStorage)
     if (shuffleSVG.classList.contains('hidden'))
       localStorage.setItem('nms-repeat', true);
     else
       localStorage.removeItem('nms-repeat');
 
-
+    // Recreate playlist
   shuffleAudio();
 }
 
+/**
+ * Increase volume
+ */
 function volUp() {
+  // Cap at 1 (otherwise exception is thrown)
   var vol = Math.min(player.volume + 0.1, 1);
   player.volume = vol;
 
+  // Store volume
   if (localStorage)
     localStorage.setItem('nms-vol', vol);
 }
 
+/**
+ * Decrease volume
+ */
 function volDown() {
+  // Cap at 0 (otherwise exception thrown)
   var vol = Math.max(player.volume - 0.1, 0);
   player.volume = vol;
 
+  // Store volume
   if (localStorage)
     localStorage.setItem('nms-vol', vol);
 }
 
+/**
+ * Update the progress bar with song progress
+ */
 function changeAudioProgress() {
   document.querySelector('.progress-bar').style.width = ((player.currentTime / player.duration) * 100) + '%';
 }
@@ -255,6 +297,7 @@ function createCountdowns() {
     }
   }
 
+  // Set interval for next update
   interval = setInterval(function() {
     countdowns.forEach(function(countdown) {
       if (typeof countdown.currTime !== 'undefined')
@@ -351,8 +394,6 @@ var countdowns = [{
 }];
 
 var interval;
-
-var images = [];
 
 var nextBgIndex = 0;
 var playlist = [];
