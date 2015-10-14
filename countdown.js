@@ -32,6 +32,10 @@ function initPage() {
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
   $('.button-next').addEventListener('click', changeAudio);
+  $('.button-play').addEventListener('click', toggleAudio);
+  $('.button-shuffle').addEventListener('click', toggleShuffle);
+  $('.button-volUp').addEventListener('click', volUp);
+  $('.button-volDown').addEventListener('click', volDown);
 
   if (window.location.hash === '#irc')
     body.classList.add('open');
@@ -112,7 +116,8 @@ function changeAudio() {
 
   if (!player) {
     player = document.createElement('audio');
-    player.autoplay = true;
+    if ($('.play-svg.hidden'))
+      player.autoplay = true;
     player.addEventListener('ended', changeAudio);
   }
 
@@ -120,6 +125,38 @@ function changeAudio() {
   $('.song-title').innerHTML = playlist[currSongIndex].title;
   $('.song-artist').innerHTML = playlist[currSongIndex].artist;
   $('.song-artist-link').href = playlist[currSongIndex].artistLink;
+}
+
+function toggleAudio() {
+  var playSVG = document.querySelector('.play-svg');
+  var pauseSVG = document.querySelector('.pause-svg');
+  if (pauseSVG.classList.contains('hidden'))
+    player.play();
+  else
+    player.pause();
+  playSVG.classList.toggle('hidden');
+  pauseSVG.classList.toggle('hidden');
+}
+
+function toggleShuffle() {
+  var shuffleSVG = document.querySelector('.shuffle-svg');
+  var repeatSVG = document.querySelector('.repeat-svg');
+  if (player)
+    if (shuffleSVG.classList.contains('hidden'))
+      shuffleAudio();
+    else
+      unShuffleAudio();
+  changeAudio();
+  shuffleSVG.classList.toggle('hidden');
+  repeatSVG.classList.toggle('hidden');
+}
+
+function volUp() {
+  player.volume += 0.1;
+}
+
+function volDown() {
+  player.volume -= 0.1;
 }
 
 /**
