@@ -28,9 +28,21 @@ function initPage() {
   raleway.type = 'text/css';
   currStyle.parentNode.insertBefore(raleway, currStyle);
 
+  if (localStorage) {
+    if (localStorage.getItem('nms-autoplay'))
+      toggleAudio();
+    if (localStorage.getItem('nms-repeat'))
+      toggleShuffle();
+  }
+
   // Set up button
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
+  $('.button-next').addEventListener('click', changeAudio);
+  $('.button-play').addEventListener('click', toggleAudio);
+  $('.button-shuffle').addEventListener('click', toggleShuffle);
+  $('.button-volUp').addEventListener('click', volUp);
+  $('.button-volDown').addEventListener('click', volDown);
 
   if (window.location.hash === '#irc')
     body.classList.add('open');
@@ -61,6 +73,119 @@ function preloadImages() {
       newImg.src = 'img/' + image;
     images.push(newImg);
   });
+}
+
+/**
+ * Loads all songs, and puts
+ * them in an array for future use
+ */
+function preloadAudio() {
+  data_songs.forEach(function(song) {
+    var newAudio = document.createElement('audio');
+    newAudio.src = 'audio/' + song.src;
+    songs.push(newAudio);
+  });
+}
+
+function shuffleAudio() {
+  var newPl = [];
+
+  if (document.querySelector('.repeat-svg.hidden')) {
+    var tempPl = [];
+    data_songs.forEach(function(song) {
+      tempPl.push(song);
+    });
+    while (tempPl.length > 0) {
+      var index = Math.floor(Math.random() * tempPl.length);
+      newPl.push(tempPl[index]);
+      tempPl.splice(index, 1);
+    }
+  } else {
+    data_songs.forEach(function(song) {
+      newPl.push(song);
+    });
+  }
+
+  playlist = newPl;
+}
+
+function changeAudio() {
+  var $ = document.querySelector.bind(document);
+  currSongIndex++;
+  if (currSongIndex == playlist.length) {
+    currSongIndex = 0;
+    shuffleAudio();
+  }
+
+  if (!player) {
+    player = document.createElement('audio');
+    if ($('.play-svg.hidden'))
+      player.autoplay = true;
+    if (localStorage)
+      player.volume = localStorage.getItem('nms-vol') || 0.5;
+    player.addEventListener('ended', changeAudio);
+    player.addEventListener('timeupdate', changeAudioProgress);
+  }
+
+  player.src = 'audio/' + playlist[currSongIndex].src;
+  $('.song-title').innerHTML = playlist[currSongIndex].title;
+  $('.song-artist').innerHTML = playlist[currSongIndex].artist;
+  $('.song-artist-link').href = playlist[currSongIndex].artistLink;
+  $('.progress-bar').style.width = 0;
+}
+
+function toggleAudio() {
+  var playSVG = document.querySelector('.play-svg');
+  var pauseSVG = document.querySelector('.pause-svg');
+  if (pauseSVG.classList.contains('hidden')) {
+    if (player)
+      player.play();
+    if (localStorage)
+      localStorage.setItem('nms-autoplay', true);
+  } else {
+    if (player)
+      player.pause();
+    if (localStorage)
+      localStorage.removeItem('nms-autoplay');
+  }
+  playSVG.classList.toggle('hidden');
+  pauseSVG.classList.toggle('hidden');
+}
+
+function toggleShuffle() {
+  var shuffleSVG = document.querySelector('.shuffle-svg');
+  var repeatSVG = document.querySelector('.repeat-svg');
+  shuffleSVG.classList.toggle('hidden');
+  repeatSVG.classList.toggle('hidden');
+
+  if (localStorage)
+    if (shuffleSVG.classList.contains('hidden'))
+      localStorage.setItem('nms-repeat', true);
+    else
+      localStorage.removeItem('nms-repeat');
+
+
+  shuffleAudio();
+}
+
+function volUp() {
+  var vol = Math.min(player.volume + 0.1, 1);
+  player.volume = vol;
+
+  if (localStorage)
+    localStorage.setItem('nms-vol', vol);
+}
+
+function volDown() {
+  var vol = Math.max(player.volume - 0.1, 0);
+  player.volume = vol;
+
+  if (localStorage)
+    localStorage.setItem('nms-vol', vol);
+}
+
+function changeAudioProgress() {
+  document.querySelector('.progress-bar').style.width = ((player.currentTime / player.duration) * 100) + '%';
 }
 
 /**
@@ -228,18 +353,18 @@ function stopAllCountdowns() {
     window.clearInterval(interval);
 }
 
-window.addEventListener('DOMContentLoaded', initPage);
-window.addEventListener('load', preloadImages);
+window.addEventListener('DOMContentLoaded', function() {
+  initPage();
+  preloadImages();
+  preloadAudio();
+  shuffleAudio();
+  changeAudio();
+});
 
 var countdowns = [{
   title: 'Countdown to No Man\'s Sky',
   endText: 'No Man\'s Sky Has Been Released',
   noText: 'It\'s a secret<sup>tm</sup>',
-  times: []
-}, {
-  title: 'GameCity Festival',
-  endText: 'No Man\'s Saturday is here!',
-  noText: 'No Man\'s Saturday has been Postponed',
   times: []
 }, {
   title: 'Paris Games Week - Sony Conference',
@@ -253,6 +378,11 @@ var interval;
 
 var images = [];
 
+var songs = [];
+var playlist = [];
+var currSongIndex = 0;
+var player;
+
 // Long list of images
 // 'img/' gets added on automatically
 var data_images = [
@@ -260,36 +390,28 @@ var data_images = [
   'Becron5.png',
   'BlueSpace.png',
   'Creature.png',
-  'Diplo.png',
-  {
+  'Diplo.png', {
     src: 'fan1.jpg',
     artist: '/u/Battlefront528'
-  },
-  {
+  }, {
     src: 'fan2.jpg',
     artist: '/u/NoMansSciFi (Combined screenshots)'
-  },
-  {
+  }, {
     src: 'fan3.jpg',
     artist: '/u/DurMan667'
-  },
-  {
+  }, {
     src: 'fan4.jpg',
     artist: '/u/PepsiTetraHepta'
-  },
-  {
+  }, {
     src: 'fan5.jpg',
     artist: '/u/secret_online'
-  },
-  {
+  }, {
     src: 'fan6.jpg',
     artist: '/u/ChrisDNorris'
-  },
-  {
+  }, {
     src: 'fan7.jpg',
     artist: '/u/betrion'
-  },
-  {
+  }, {
     src: 'fan8.jpg',
     artist: '/u/phobox91'
   },
@@ -319,3 +441,10 @@ var data_images = [
   'station4.png',
   'logo.png'
 ];
+
+var data_songs = [{
+  title: 'There\'s nothing here yet',
+  artist: 'Don\'t worry, I\'m working on it!',
+  artistLink: '.',
+  src: ''
+}]
