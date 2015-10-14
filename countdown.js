@@ -28,6 +28,13 @@ function initPage() {
   raleway.type = 'text/css';
   currStyle.parentNode.insertBefore(raleway, currStyle);
 
+  if (localStorage) {
+    if (localStorage.getItem('nms-autoplay'))
+      toggleAudio();
+    if (localStorage.getItem('nms-repeat'))
+      toggleShuffle();
+  }
+
   // Set up button
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
@@ -82,24 +89,23 @@ function preloadAudio() {
 
 function shuffleAudio() {
   var newPl = [];
-  var tempPl = [];
-  data_songs.forEach(function(song) {
-    tempPl.push(song);
-  });
-  while (tempPl.length > 0) {
-    var index = Math.floor(Math.random() * tempPl.length);
-    newPl.push(tempPl[index]);
-    tempPl.splice(index, 1);
+
+  if (document.querySelector('.repeat-svg.hidden')) {
+    var tempPl = [];
+    data_songs.forEach(function(song) {
+      tempPl.push(song);
+    });
+    while (tempPl.length > 0) {
+      var index = Math.floor(Math.random() * tempPl.length);
+      newPl.push(tempPl[index]);
+      tempPl.splice(index, 1);
+    }
+  } else {
+    data_songs.forEach(function(song) {
+      newPl.push(song);
+    });
   }
 
-  playlist = newPl;
-}
-
-function unShuffleAudio() {
-  var newPl = [];
-  data_songs.forEach(function(song) {
-    newPl.push(song);
-  });
   playlist = newPl;
 }
 
@@ -108,16 +114,15 @@ function changeAudio() {
   currSongIndex++;
   if (currSongIndex == playlist.length) {
     currSongIndex = 0;
-    if ($('.shuffle-svg.hidden'))
-      unShuffleAudio();
-    else
-      shuffleAudio();
+    shuffleAudio();
   }
 
   if (!player) {
     player = document.createElement('audio');
     if ($('.play-svg.hidden'))
       player.autoplay = true;
+    if (localStorage)
+      player.volume = localStorage.getItem('nms-vol') || 0.5;
     player.addEventListener('ended', changeAudio);
     player.addEventListener('timeupdate', changeAudioProgress);
   }
@@ -132,10 +137,17 @@ function changeAudio() {
 function toggleAudio() {
   var playSVG = document.querySelector('.play-svg');
   var pauseSVG = document.querySelector('.pause-svg');
-  if (pauseSVG.classList.contains('hidden'))
-    player.play();
-  else
-    player.pause();
+  if (pauseSVG.classList.contains('hidden')) {
+    if (player)
+      player.play();
+    if (localStorage)
+      localStorage.setItem('nms-autoplay', true);
+  } else {
+    if (player)
+      player.pause();
+    if (localStorage)
+      localStorage.removeItem('nms-autoplay');
+  }
   playSVG.classList.toggle('hidden');
   pauseSVG.classList.toggle('hidden');
 }
@@ -143,21 +155,33 @@ function toggleAudio() {
 function toggleShuffle() {
   var shuffleSVG = document.querySelector('.shuffle-svg');
   var repeatSVG = document.querySelector('.repeat-svg');
-  if (player)
-    if (shuffleSVG.classList.contains('hidden'))
-      shuffleAudio();
-    else
-      unShuffleAudio();
   shuffleSVG.classList.toggle('hidden');
   repeatSVG.classList.toggle('hidden');
+
+  if (localStorage)
+    if (shuffleSVG.classList.contains('hidden'))
+      localStorage.setItem('nms-repeat', true);
+    else
+      localStorage.removeItem('nms-repeat');
+
+
+  shuffleAudio();
 }
 
 function volUp() {
-  player.volume += 0.1;
+  var vol = Math.min(player.volume + 0.1, 1);
+  player.volume = vol;
+
+  if (localStorage)
+    localStorage.setItem('nms-vol', vol);
 }
 
 function volDown() {
-  player.volume -= 0.1;
+  var vol = Math.max(player.volume - 0.1, 0);
+  player.volume = vol;
+
+  if (localStorage)
+    localStorage.setItem('nms-vol', vol);
 }
 
 function changeAudioProgress() {
