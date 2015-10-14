@@ -1,7 +1,12 @@
-h1, h2, h3, h4, noscript {
+h1,
+h2,
+h3,
+h4,
+noscript {
   font-family: geosanslight-nmsregular, 'Open Sans', Helvetica, Verdana, Arial, sans-serif;
 }
-.countdown, .minor-countdown {
+.countdown,
+.minor-countdown {
   font-family: 'Roboto Mono', monospace;
   font-weight: 300;
 }
@@ -24,14 +29,14 @@ iframe {
 }
 header {
   position: fixed;
-  z-index: 3;
+  z-index: 4;
   top: 0;
   left: 0;
   display: block;
   overflow: hidden;
   height: 60px;
   width: 100%;
-  background-color: #7FBC4A;
+  background-color: #7fbc4a;
   color: white;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
   transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
@@ -78,22 +83,25 @@ header button svg:active {
 .github svg path {
   transform: scale(0.024);
 }
-main, aside {
+main,
+aside {
   position: absolute;
   top: 0;
   padding-top: 60px;
 }
 .main-container {
   position: relative;
-  top: 30vh;
+  top: 0;
   color: white;
   background-color: rgba(0, 0, 0, .5);
   padding: 10px 0;
   transition: height 0.3s ease-out;
+  z-index: 3;
 }
 main {
   transition: width 0.3s ease-out;
   width: 100vw;
+  height: calc(100vh - 60px);
   z-index: 1;
 }
 aside {
@@ -112,8 +120,8 @@ aside {
   width: calc(100vw - 2px);
   height: calc(100vh - 60px);
   max-height: calc(100vh - 60px);
-  border-left: 2px solid #7FBC4A;
-  background-color: #F7F7F7;
+  border-left: 2px solid #7fbc4a;
+  background-color: #f7f7f7;
 }
 .open aside {
   -webkit-transform: translateX(0);
@@ -124,6 +132,70 @@ aside {
 }
 aside h2 {
   margin-left: 10px;
+}
+.audio-container {
+  background: #fff;
+  z-index: 2;
+  opacity: 0.75;
+  position: absolute;
+  bottom: 0;
+  padding: 0 10px;
+  letter-spacing: 0.4em;
+  box-sizing: border-box;
+  width: 100vw;
+}
+.audio-container h2 {
+  margin: 10px 0;
+}
+.song-controls {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.song-controls a {
+  text-decoration: none;
+  display: inline-block;
+}
+.song-controls button {
+  padding: 0;
+  border: 2px solid #888;
+  display: inline-block;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  box-sizing: content-box;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.song-controls button.button-play {
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+}
+.song-controls .button-play svg {
+  padding: 8px;
+}
+.song-controls button:hover {
+  opacity: 1;
+}
+.song-controls svg {
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  fill: #888;
+}
+.song-progress {
+  width: calc(100% - 8px);
+  height: 10px;
+  padding: 2px;
+  border: 2px solid #888;
+}
+.progress-bar {
+  background-color: #888;
+  height: 10px;
+  width: 50%;
 }
 .ircContainer {
   height: calc(100% - 68px);
@@ -140,6 +212,9 @@ aside h2 {
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
+}
+.hidden {
+  display: none;
 }
 .fadeout {
   animation-duration: 1s;
@@ -163,10 +238,51 @@ aside h2 {
     right: 0;
   }
   .open header button svg {
-    fill: #000000;
+    fill: #000;
   }
   .open main {
     width: 50vw;
+  }
+  .main-container {
+    top: 30vh;
+  }
+  .audio-container {
+    background: linear-gradient(225deg, transparent 7%, #fff 0) top right;
+    background-repeat: no-repeat;
+    transform-origin: left;
+    transition: transform 0.5s;
+    top: 80px;
+    left: 20px;
+    bottom: auto;
+    min-width: 300px;
+    width: auto;
+  }
+  .audio-container::before {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 700px;
+    background-color: black;
+    left: -2px;
+    top: -90px;
+  }
+  .audio-container::after {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 700px;
+    height: 2px;
+    background-color: black;
+    left: -90px;
+    top: -2px;
+  }
+  .audio-container:not(:hover) {
+    -webkit-transform: rotate3d(9, 13, .6, 10deg);
+    -moz-transform: rotate3d(9, 13, .6, 10deg);
+    -ms-transform: rotate3d(9, 13, .6, 10deg);
+    -o-transform: rotate3d(9, 13, .6, 10deg);
+    transform: rotate3d(9, 13, .6, 10deg);
   }
   aside {
     width: calc(50vw - 2px);
