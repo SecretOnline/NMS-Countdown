@@ -443,8 +443,23 @@ var data_images = [
 ];
 
 var data_songs = [{
-  title: 'There\'s nothing here yet',
-  artist: 'Don\'t worry, I\'m working on it!',
-  artistLink: '.',
-  src: ''
+  title: 'Atlas',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/Atlas.mp3'
+}, {
+  title: 'First Step [1969]',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/FirstStep.mp3'
+}, {
+  title: 'Soleth Prime',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/SolethPrime.mp3'
+}, {
+  title: 'The Lore',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/TheLore.mp3'
 }]
