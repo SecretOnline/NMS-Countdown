@@ -423,5 +423,9 @@ var data_images = [
   'logo.png'
 ];
 
-var data_songs = [
-]
+var data_songs = [{
+  title: 'There\'s nothing here yet',
+  artist: 'Don\'t worry, I\'m working on it!',
+  artistLink: '.',
+  src: ''
+}]
