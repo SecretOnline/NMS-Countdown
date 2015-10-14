@@ -29,7 +29,7 @@ iframe {
 }
 header {
   position: fixed;
-  z-index: 3;
+  z-index: 4;
   top: 0;
   left: 0;
   display: block;
@@ -96,10 +96,12 @@ aside {
   background-color: rgba(0, 0, 0, .5);
   padding: 10px 0;
   transition: height 0.3s ease-out;
+  z-index: 3;
 }
 main {
   transition: width 0.3s ease-out;
   width: 100vw;
+  height: calc(100vh - 70px);
   z-index: 1;
 }
 aside {
@@ -131,13 +133,13 @@ aside {
 aside h2 {
   margin-left: 10px;
 }
-.flap {
+.audio-container {
   background: #fff;
   background: linear-gradient(225deg, transparent 7%, #fff 0) top right;
   background-repeat: no-repeat;
   transform-origin: left;
   transition: transform 0.5s;
-  z-index: 5;
+  z-index: 2;
   opacity: 0.75;
   position: absolute;
   top: 80px;
@@ -146,7 +148,7 @@ aside h2 {
   min-width: 300px;
   letter-spacing: 0.4em;
 }
-.flap::before {
+.audio-container::before {
   display: block;
   position: absolute;
   content: '';
@@ -156,7 +158,7 @@ aside h2 {
   left: -2px;
   top: -90px;
 }
-.flap::after {
+.audio-container::after {
   display: block;
   position: absolute;
   content: '';
@@ -166,14 +168,14 @@ aside h2 {
   left: -90px;
   top: -2px;
 }
-.flap:not(:hover) {
+.audio-container:not(:hover) {
   -webkit-transform: rotate3d(9, 13, .6, 10deg);
   -moz-transform: rotate3d(9, 13, .6, 10deg);
   -ms-transform: rotate3d(9, 13, .6, 10deg);
   -o-transform: rotate3d(9, 13, .6, 10deg);
   transform: rotate3d(9, 13, .6, 10deg);
 }
-.flap h2 {
+.audio-container h2 {
   margin: 10px 0;
 }
 .song-controls {
