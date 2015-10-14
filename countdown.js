@@ -31,6 +31,7 @@ function initPage() {
   // Set up button
   var ircButton = $('.ircButton');
   ircButton.addEventListener('click', toggleIrc);
+  $('.button-next').addEventListener('click', changeAudio);
 
   if (window.location.hash === '#irc')
     body.classList.add('open');
@@ -98,6 +99,27 @@ function unShuffleAudio() {
   playlist = newPl;
 }
 
+function changeAudio() {
+  var $ = document.querySelector.bind(document);
+  currSongIndex++;
+  if (currSongIndex == playlist.length) {
+    currSongIndex = 0;
+    if ($('.shuffle-svg.hidden'))
+      unShuffleAudio();
+    else
+      shuffleAudio();
+  }
+
+  if (!player) {
+    player = document.createElement('audio');
+    player.autoplay = true;
+    player.addEventListener('ended', changeAudio);
+  }
+
+  player.src = 'audio/' + playlist[currSongIndex].src;
+  $('.song-title').innerHTML = playlist[currSongIndex].title;
+  $('.song-artist').innerHTML = playlist[currSongIndex].artist;
+  $('.song-artist-link').href = playlist[currSongIndex].artistLink;
 }
 
 /**
@@ -266,8 +288,12 @@ function stopAllCountdowns() {
 }
 
 window.addEventListener('DOMContentLoaded', initPage);
-window.addEventListener('DOMContentLoaded', preloadImages);
-window.addEventListener('DOMContentLoaded', preloadAudio);
+window.addEventListener('load', function() {
+  preloadImages();
+  preloadAudio();
+  shuffleAudio();
+  changeAudio();
+});
 
 var countdowns = [{
   title: 'Countdown to No Man\'s Sky',
@@ -294,6 +320,7 @@ var images = [];
 var songs = [];
 var playlist = [];
 var currSongIndex = 0;
+var player;
 
 // Long list of images
 // 'img/' gets added on automatically
