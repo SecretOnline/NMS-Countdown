@@ -237,11 +237,6 @@ var countdowns = [{
   noText: 'It\'s a secret<sup>tm</sup>',
   times: []
 }, {
-  title: 'GameCity Festival',
-  endText: 'No Man\'s Saturday is here!',
-  noText: 'No Man\'s Saturday has been Postponed',
-  times: []
-}, {
   title: 'Paris Games Week - Sony Conference',
   endText: 'Sony on stage!',
   times: [
