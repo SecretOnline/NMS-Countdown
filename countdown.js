@@ -1,312 +1,315 @@
-/**
- * Get everything ready
- */
-function initPage() {
-  var $ = document.querySelector.bind(document);
-  var body = $('body');
-  var main = $('main');
+(function(win, doc) {
+  'use strict';
+  var $ = doc.querySelector.bind(doc);
 
-  function toggleIrc() {
-    body.classList.toggle('open');
-    if (!$('.ircContainer').innerHTML) {
-      var irc = document.createElement('iframe');
-      irc.src = 'http://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky';
-      irc.classList.add('irc');
-      irc.addEventListener('load', function() {
-        $('.ircHeader').innerHTML = 'IRC: #nomanssky';
-      });
-      $('.ircContainer').appendChild(irc);
-    }
-  }
+  /**
+   * Get everything ready
+   */
+  function initPage() {
+    var body = $('body');
+    var main = $('main');
 
-  // Add fonts in later, to prevent render blocking
-  var currStyle = $('link[rel="stylesheet"]');
-  var geoSans = document.createElement('link');
-  geoSans.rel = 'stylesheet';
-  geoSans.href = 'fonts.css';
-  geoSans.type = 'text/css';
-  currStyle.parentNode.insertBefore(geoSans, currStyle);
-  var robotoMono = document.createElement('link');
-  robotoMono.rel = 'stylesheet';
-  robotoMono.href = 'http://fonts.googleapis.com/css?family=Roboto+Mono:300';
-  robotoMono.type = 'text/css';
-  currStyle.parentNode.insertBefore(robotoMono, currStyle);
-  var raleway = document.createElement('link');
-  raleway.rel = 'stylesheet';
-  raleway.href = 'http://fonts.googleapis.com/css?family=Raleway';
-  raleway.type = 'text/css';
-  currStyle.parentNode.insertBefore(raleway, currStyle);
-
-  // Set up button
-  var ircButton = $('.ircButton');
-  ircButton.addEventListener('click', toggleIrc);
-
-  if (window.location.hash === '#irc')
-    toggleIrc();
-
-  // Set up countdowns
-  createCountdowns();
-  var artist = document.createElement('h4');
-  artist.classList.add('artist');
-  artist.classList.add('center');
-  $('.main-container').appendChild(artist);
-
-  // Set up background changing
-  setInterval(changeImage, 60000);
-  // For whaever reason, I need to do this twice.
-  changeImage();
-  changeImage();
-}
-
-/**
- * Set the background to a random image
- */
-function changeImage(bgIndex) {
-  var $ = document.querySelector.bind(document);
-  var bgElement = $('.bg');
-  var body = $('body');
-
-  bgElement.classList.add('fadein');
-  bgElement.style.opacity = ''; // Manually specify opacity
-
-  if (typeof bgIndex === 'number' && bgIndex <= data_images.length)
-    nextBgIndex = bgIndex;
-
-  if (data_images[nextBgIndex].artist)
-    $('.artist').innerHTML = 'Artist: ' + data_images[nextBgIndex].artist;
-  else {
-    $('.artist').innerHTML = '';
-  }
-  // Start the crossfade after 100ms
-  setTimeout(function() {
-    body.style.backgroundImage = bgElement.style.backgroundImage;
-
-    nextBgIndex = nextImageIndex();
-    var image = data_images[nextBgIndex];
-    if (image.artist)
-      bgElement.style.backgroundImage = 'url(img/' + image.src + ')';
-    else
-      bgElement.style.backgroundImage = 'url(img/' + image + ')';
-    bgElement.classList.remove('fadein');
-    bgElement.style.opacity = 0; // Remove overly-specific rule to allow animation to work
-  }, 1000);
-
-  return bgIndex;
-}
-
-/**
- * Return the source for a random image
- */
-function nextImageIndex() {
-  return Math.floor(Math.random() * data_images.length);
-}
-
-/**
- * Initialise all of the countdowns
- */
-function createCountdowns() {
-  var mainContainer = document.querySelector('.main-container');
-  mainContainer.innerHTML = '';
-
-  for (var i = 0; i < countdowns.length; i++) {
-    // Create elements
-    var container = document.createElement('div');
-    var titleElement = document.createElement(i === 0 ? 'h1' : 'h2'); // First countdown is bigger
-    var countElement = document.createElement(i === 0 ? 'h2' : 'h3');
-    // Set up elements
-    titleElement.innerHTML = countdowns[i].title;
-    container.classList.add('countdown-container');
-    container.classList.add('center');
-    titleElement.classList.add('center');
-    countElement.classList.add('countdown');
-    countElement.classList.add('center');
-    countElement.innerHTML = '<span class="d"></span>d:<span class="h"></span>h:<span class="m"></span>m:<span class="s"></span>s:<span class="ms"></span>';
-    container.appendChild(titleElement);
-    container.appendChild(countElement);
-    // If there are countdowns, find which one to use
-    if (countdowns[i].times && countdowns[i].times.length) {
-      for (var j = 0; j < countdowns[i].times.length; j++) {
-        if (new Date(countdowns[i].times[j]).getTime() - Date.now() > 0) {
-          countdowns[i].currTime = j;
-          break;
-        }
-      }
-      // If a countdown was set, add to main container
-      if (typeof countdowns[i].currTime !== 'undefined') {
-        mainContainer.appendChild(container);
-        countdowns[i].container = container;
-      } else {
-        // Show the finished text
-        countElement.innerHTML = countdowns[i].endText;
-        mainContainer.appendChild(container);
-      }
-    } else {
-      // No countdowns were specified
-      // If there is placeholder text, display it
-      if (countdowns[i].noText) {
-        countElement.innerHTML = countdowns[i].noText;
-        mainContainer.appendChild(container);
+    function toggleIrc() {
+      body.classList.toggle('open');
+      if (!$('.ircContainer').innerHTML) {
+        var irc = doc.createElement('iframe');
+        irc.src = 'http://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky';
+        irc.classList.add('irc');
+        irc.addEventListener('load', function() {
+          $('.ircHeader').innerHTML = 'IRC: #nomanssky';
+        });
+        $('.ircContainer').appendChild(irc);
       }
     }
+
+    // Add fonts in later, to prevent render blocking
+    var currStyle = $('link[rel="stylesheet"]');
+    var geoSans = doc.createElement('link');
+    geoSans.rel = 'stylesheet';
+    geoSans.href = 'fonts.css';
+    geoSans.type = 'text/css';
+    currStyle.parentNode.insertBefore(geoSans, currStyle);
+    var robotoMono = doc.createElement('link');
+    robotoMono.rel = 'stylesheet';
+    robotoMono.href = 'http://fonts.googleapis.com/css?family=Roboto+Mono:300';
+    robotoMono.type = 'text/css';
+    currStyle.parentNode.insertBefore(robotoMono, currStyle);
+    var raleway = doc.createElement('link');
+    raleway.rel = 'stylesheet';
+    raleway.href = 'http://fonts.googleapis.com/css?family=Raleway';
+    raleway.type = 'text/css';
+    currStyle.parentNode.insertBefore(raleway, currStyle);
+
+    // Set up button
+    var ircButton = $('.ircButton');
+    ircButton.addEventListener('click', toggleIrc);
+
+    if (win.location.hash === '#irc')
+      toggleIrc();
+
+    // Set up countdowns
+    createCountdowns();
+    var artist = doc.createElement('h4');
+    artist.classList.add('artist');
+    artist.classList.add('center');
+    $('.main-container').appendChild(artist);
+
+    // Set up background changing
+    setInterval(changeImage, 60000);
+    // For whaever reason, I need to do this twice.
+    changeImage();
+    changeImage();
   }
 
-  // Set interval for next update
-  interval = setInterval(function() {
-    countdowns.forEach(function(countdown) {
-      if (typeof countdown.currTime !== 'undefined')
-        updateCountdown(countdown);
-    });
-  }, 7);
-}
+  /**
+   * Set the background to a random image
+   */
+  function changeImage(bgIndex) {
+    var $ = doc.querySelector.bind(doc);
+    var bgElement = $('.bg');
+    var body = $('body');
 
-function updateCountdown(countdown) {
-  var timeDiff = new Date(countdown.times[countdown.currTime]).getTime() - Date.now(); // What a mouthful.
-  var cd = countdown.container.querySelector('.countdown');
-  // Basically, for each interval (starting at ms), check if it overflowed.
-  // If so, update the next interval.
-  // Format numbers into a 2 (or 3) character string, and display.
-  if (timeDiff > 0) {
-    var ms = Math.floor(timeDiff % 1000);
-    if (!countdown.oldMs || cs < countdown.oldMs) {
-      var s = Math.floor((timeDiff % 60000) / 1000);
-      if (!countdown.oldS || s < countdown.oldS) {
-        var m = Math.floor((timeDiff % 3600000) / 60000);
-        if (!countdown.oldM || m < countdown.oldM) {
-          var h = Math.floor((timeDiff % 86400000) / 3600000);
-          if (!countdown.oldH || h < countdown.oldH) {
-            var d = Math.floor(timeDiff / 86400000).toString();
-            if (d < 10)
-              d = '0' + d;
-            cd.querySelector('.d').innerHTML = d;
-          }
-          countdown.oldH = h;
-          h = h.toString();
-          if (h < 10)
-            h = '0' + h;
-          cd.querySelector('.h').innerHTML = h;
-        }
-        countdown.oldM = m;
-        m = m.toString();
-        if (m < 10)
-          m = '0' + m;
-        cd.querySelector('.m').innerHTML = m;
-      }
-      countdown.oldS = s;
-      s = s.toString();
-      if (s < 10)
-        s = '0' + s;
-      cd.querySelector('.s').innerHTML = s;
+    bgElement.classList.add('fadein');
+    bgElement.style.opacity = ''; // Manually specify opacity
+
+    if (typeof bgIndex === 'number' && bgIndex <= data_images.length)
+      nextBgIndex = bgIndex;
+
+    if (data_images[nextBgIndex].artist)
+      $('.artist').innerHTML = 'Artist: ' + data_images[nextBgIndex].artist;
+    else {
+      $('.artist').innerHTML = '';
     }
-    countdown.oldMS = ms;
-    ms = ms.toString();
-    if (ms < 100)
-      ms = '0' + ms;
-    if (ms < 10)
-      ms = '0' + ms;
-    cd.querySelector('.ms').innerHTML = ms;
-  } else {
-    // Countdown finished. Show end text for a minute
-    cd.innerHTML = countdown.endText;
-    countdown.oldTime = countdown.currTime;
-    countdown.currTime = null;
+    // Start the crossfade after 100ms
     setTimeout(function() {
-      if (countdown.oldTime + 1 < countdown.times.length) {
-        countdown.currTime = countdown.oldTime + 1;
-        cd.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
-      }
-    }, 60000);
+      body.style.backgroundImage = bgElement.style.backgroundImage;
+
+      nextBgIndex = nextImageIndex();
+      var image = data_images[nextBgIndex];
+      if (image.artist)
+        bgElement.style.backgroundImage = 'url(img/' + image.src + ')';
+      else
+        bgElement.style.backgroundImage = 'url(img/' + image + ')';
+      bgElement.classList.remove('fadein');
+      bgElement.style.opacity = 0; // Remove overly-specific rule to allow animation to work
+    }, 1000);
+
+    return bgIndex;
   }
-}
 
-/**
- * Mainly to stop browser throwing several hundred errors every second
- * I'm going to leave this in in case someone wants to stop the clock.
- */
-function stopAllCountdowns() {
-  if (interval)
-    window.clearInterval(interval);
-}
+  /**
+   * Return the source for a random image
+   */
+  function nextImageIndex() {
+    return Math.floor(Math.random() * data_images.length);
+  }
 
-window.addEventListener('DOMContentLoaded', function() {
-  initPage();
-});
+  /**
+   * Initialise all of the countdowns
+   */
+  function createCountdowns() {
+    var mainContainer = doc.querySelector('.main-container');
+    mainContainer.innerHTML = '';
 
-window.addEventListener('load', function() {
-  changeAudio();
-});
+    for (var i = 0; i < countdowns.length; i++) {
+      // Create elements
+      var container = doc.createElement('div');
+      var titleElement = doc.createElement(i === 0 ? 'h1' : 'h2'); // First countdown is bigger
+      var countElement = doc.createElement(i === 0 ? 'h2' : 'h3');
+      // Set up elements
+      titleElement.innerHTML = countdowns[i].title;
+      container.classList.add('countdown-container');
+      container.classList.add('center');
+      titleElement.classList.add('center');
+      countElement.classList.add('countdown');
+      countElement.classList.add('center');
+      countElement.innerHTML = '<span class="d"></span>d:<span class="h"></span>h:<span class="m"></span>m:<span class="s"></span>s:<span class="ms"></span>';
+      container.appendChild(titleElement);
+      container.appendChild(countElement);
+      // If there are countdowns, find which one to use
+      if (countdowns[i].times && countdowns[i].times.length) {
+        for (var j = 0; j < countdowns[i].times.length; j++) {
+          if (new Date(countdowns[i].times[j]).getTime() - Date.now() > 0) {
+            countdowns[i].currTime = j;
+            break;
+          }
+        }
+        // If a countdown was set, add to main container
+        if (typeof countdowns[i].currTime !== 'undefined') {
+          mainContainer.appendChild(container);
+          countdowns[i].container = container;
+        } else {
+          // Show the finished text
+          countElement.innerHTML = countdowns[i].endText;
+          mainContainer.appendChild(container);
+        }
+      } else {
+        // No countdowns were specified
+        // If there is placeholder text, display it
+        if (countdowns[i].noText) {
+          countElement.innerHTML = countdowns[i].noText;
+          mainContainer.appendChild(container);
+        }
+      }
+    }
 
-var countdowns = [{
-  title: 'Countdown to No Man\'s Sky',
-  endText: 'No Man\'s Sky Has Been Released',
-  noText: 'It\'s a secret<sup>tm</sup>',
-  times: []
-}, {
-  title: 'Paris Games Week - Sony Conference',
-  endText: 'Sony on stage!',
-  times: [
-    "2015-10-27T17:00+00:00"
-  ]
-}];
+    // Set interval for next update
+    interval = setInterval(function() {
+      countdowns.forEach(function(countdown) {
+        if (typeof countdown.currTime !== 'undefined')
+          updateCountdown(countdown);
+      });
+    }, 7);
+  }
 
-var interval;
+  function updateCountdown(countdown) {
+    var timeDiff = new Date(countdown.times[countdown.currTime]).getTime() - Date.now(); // What a mouthful.
+    var cd = countdown.container.querySelector('.countdown');
+    // Basically, for each interval (starting at ms), check if it overflowed.
+    // If so, update the next interval.
+    // Format numbers into a 2 (or 3) character string, and display.
+    if (timeDiff > 0) {
+      var ms = Math.floor(timeDiff % 1000);
+      if (!countdown.oldMs || cs < countdown.oldMs) {
+        var s = Math.floor((timeDiff % 60000) / 1000);
+        if (!countdown.oldS || s < countdown.oldS) {
+          var m = Math.floor((timeDiff % 3600000) / 60000);
+          if (!countdown.oldM || m < countdown.oldM) {
+            var h = Math.floor((timeDiff % 86400000) / 3600000);
+            if (!countdown.oldH || h < countdown.oldH) {
+              var d = Math.floor(timeDiff / 86400000).toString();
+              if (d < 10)
+                d = '0' + d;
+              cd.querySelector('.d').innerHTML = d;
+            }
+            countdown.oldH = h;
+            h = h.toString();
+            if (h < 10)
+              h = '0' + h;
+            cd.querySelector('.h').innerHTML = h;
+          }
+          countdown.oldM = m;
+          m = m.toString();
+          if (m < 10)
+            m = '0' + m;
+          cd.querySelector('.m').innerHTML = m;
+        }
+        countdown.oldS = s;
+        s = s.toString();
+        if (s < 10)
+          s = '0' + s;
+        cd.querySelector('.s').innerHTML = s;
+      }
+      countdown.oldMS = ms;
+      ms = ms.toString();
+      if (ms < 100)
+        ms = '0' + ms;
+      if (ms < 10)
+        ms = '0' + ms;
+      cd.querySelector('.ms').innerHTML = ms;
+    } else {
+      // Countdown finished. Show end text for a minute
+      cd.innerHTML = countdown.endText;
+      countdown.oldTime = countdown.currTime;
+      countdown.currTime = null;
+      setTimeout(function() {
+        if (countdown.oldTime + 1 < countdown.times.length) {
+          countdown.currTime = countdown.oldTime + 1;
+          cd.innerHTML = '<span class="d"></span>:<span class="h"></span>:<span class="m"></span>:<span class="s"></span>:<span class="ms"></span>';
+        }
+      }, 60000);
+    }
+  }
 
-var nextBgIndex = 0;
+  /**
+   * Mainly to stop browser throwing several hundred errors every second
+   * I'm going to leave this in in case someone wants to stop the clock.
+   */
+  function stopAllCountdowns() {
+    if (interval)
+      win.clearInterval(interval);
+  }
 
-// Long list of images
-// 'img/' gets added on automatically
-var data_images = [
-  'AlpineFly.png',
-  'Becron5.png',
-  'BlueSpace.png',
-  'Creature.png',
-  'Diplo.png', {
-    src: 'fan1.jpg',
-    artist: '/u/Battlefront528'
+  var countdowns = [{
+    title: 'Countdown to No Man\'s Sky',
+    endText: 'No Man\'s Sky Has Been Released',
+    noText: 'It\'s a secret<sup>tm</sup>',
+    times: []
   }, {
-    src: 'fan2.jpg',
-    artist: '/u/NoMansSciFi (Combined screenshots)'
-  }, {
-    src: 'fan3.jpg',
-    artist: '/u/DurMan667'
-  }, {
-    src: 'fan4.jpg',
-    artist: '/u/PepsiTetraHepta'
-  }, {
-    src: 'fan5.jpg',
-    artist: '/u/secret_online'
-  }, {
-    src: 'fan6.jpg',
-    artist: '/u/ChrisDNorris'
-  }, {
-    src: 'fan7.jpg',
-    artist: '/u/betrion'
-  }, {
-    src: 'fan8.jpg',
-    artist: '/u/phobox91'
-  },
-  'Fleet.png',
-  'GlattrecSystem.png',
-  'IGN1.jpg',
-  'IGN2.jpg',
-  'IGN3.png',
-  'IGN4.jpg',
-  'IGN5.jpg',
-  'IGN6.jpg',
-  'IGN7.jpg',
-  'IGNPlanet1.jpg',
-  'IGNPlanet2.jpg',
-  'IGNPlanet3.jpg',
-  'NewEridu.png',
-  'NightDrone.png',
-  'NoMansSky_GalacticMap.png',
-  'NoMansSky_Monolith.png',
-  'NoMansSky_SpaceStationTube.png',
-  'OvalWalker.png',
-  'RedSpace.png',
-  'SunsetBots.png',
-  'station1.jpg',
-  'station2.jpg',
-  'station3.jpg',
-  'station4.png',
-  'logo.png'
-];
+    title: 'Paris Games Week - Sony Conference',
+    endText: 'Sony on stage!',
+    times: [
+      "2015-10-27T17:00+00:00"
+    ]
+  }];
+
+  var interval;
+
+  var nextBgIndex = 0;
+
+  // Long list of images
+  // 'img/' gets added on automatically
+  var data_images = [
+    'AlpineFly.png',
+    'Becron5.png',
+    'BlueSpace.png',
+    'Creature.png',
+    'Diplo.png', {
+      src: 'fan1.jpg',
+      artist: '/u/Battlefront528'
+    }, {
+      src: 'fan2.jpg',
+      artist: '/u/NoMansSciFi (Combined screenshots)'
+    }, {
+      src: 'fan3.jpg',
+      artist: '/u/DurMan667'
+    }, {
+      src: 'fan4.jpg',
+      artist: '/u/PepsiTetraHepta'
+    }, {
+      src: 'fan5.jpg',
+      artist: '/u/secret_online'
+    }, {
+      src: 'fan6.jpg',
+      artist: '/u/ChrisDNorris'
+    }, {
+      src: 'fan7.jpg',
+      artist: '/u/betrion'
+    }, {
+      src: 'fan8.jpg',
+      artist: '/u/phobox91'
+    },
+    'Fleet.png',
+    'GlattrecSystem.png',
+    'IGN1.jpg',
+    'IGN2.jpg',
+    'IGN3.png',
+    'IGN4.jpg',
+    'IGN5.jpg',
+    'IGN6.jpg',
+    'IGN7.jpg',
+    'IGNPlanet1.jpg',
+    'IGNPlanet2.jpg',
+    'IGNPlanet3.jpg',
+    'NewEridu.png',
+    'NightDrone.png',
+    'NoMansSky_GalacticMap.png',
+    'NoMansSky_Monolith.png',
+    'NoMansSky_SpaceStationTube.png',
+    'OvalWalker.png',
+    'RedSpace.png',
+    'SunsetBots.png',
+    'station1.jpg',
+    'station2.jpg',
+    'station3.jpg',
+    'station4.png',
+    'logo.png'
+  ];
+
+  win.addEventListener('DOMContentLoaded', function() {
+    initPage();
+  });
+  if (doc.readyState !== 'loading')
+    initPage();
+
+})(window, document);
