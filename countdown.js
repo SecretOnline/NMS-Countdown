@@ -122,6 +122,9 @@ function changeAudio() {
   $('.song-artist').innerHTML = playlist[currSongIndex].artist;
   $('.song-artist-link').href = playlist[currSongIndex].artistLink;
   $('.progress-bar').style.width = 0;
+
+  if ($('.play-svg.hidden'))
+    player.play();
 }
 
 /**
@@ -479,4 +482,74 @@ var data_songs = [{
   artist: 'JayKob',
   artistLink: 'https://soundcloud.com/jaykobmusic',
   src: 'JayKob/TheLore.mp3'
+}, {
+  title: 'A Familiar Place',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/AFamiliarPlace.mp3'
+}, {
+  title: 'A First Night\'s Dream',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/AFirstNightsDream.mp3'
+}, {
+  title: 'A New Dawn',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/ANewDawn.mp3'
+}, {
+  title: 'Burning Desire',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/BurningDesire.mp3'
+}, {
+  title: 'Darkness Settles',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/DarknessSettles.mp3'
+}, {
+  title: 'Entering the Realm of Giants',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/EnteringTheRealmOfGiants.mp3'
+}, {
+  title: 'Escape Velocity',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/EscapeVelocity.mp3'
+}, {
+  title: 'Flashing Lights',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/FlashingLights.mp3'
+}, {
+  title: 'Hyperdrive',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/Hyperdrive.mp3'
+}, {
+  title: 'If That\'s what it Takes',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/IfThatsWhatItTakes.mp3'
+}, {
+  title: 'Leaving the Habitable Zone',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LeavingTheHabitableZone.mp3'
+}, {
+  title: 'Lifting Off',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LiftingOff.mp3'
+}, {
+  title: 'Looking at the Stars',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LookingAtTheStars.mp3'
+}, {
+  title: 'Looking Back',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LookingBack.mp3'
 }]
