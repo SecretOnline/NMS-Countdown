@@ -477,10 +477,30 @@ var data_songs = [{
   artistLink: 'https://soundcloud.com/jaykobmusic',
   src: 'JayKob/Atlas.mp3'
 }, {
+  title: 'Darm Matter',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/DarkMatter.mp3'
+}, {
   title: 'First Step [1969]',
   artist: 'JayKob',
   artistLink: 'https://soundcloud.com/jaykobmusic',
   src: 'JayKob/FirstStep.mp3'
+}, {
+  title: 'OriaV',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/OriaV.mp3'
+}, {
+  title: 'Pulsar',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/Pulsar.mp3'
+}, {
+  title: 'Sayall',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/Sayall.mp3'
 }, {
   title: 'Soleth Prime',
   artist: 'JayKob',
