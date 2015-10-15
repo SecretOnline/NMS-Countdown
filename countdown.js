@@ -11,15 +11,6 @@
 
     function toggleIrc() {
       body.classList.toggle('open');
-      if (!$('.ircContainer').innerHTML) {
-        var irc = doc.createElement('iframe');
-        irc.src = 'http://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky';
-        irc.classList.add('irc');
-        irc.addEventListener('load', function() {
-          $('.ircHeader').innerHTML = 'IRC: #nomanssky';
-        });
-        $('.ircContainer').appendChild(irc);
-      }
     }
 
     // Add fonts in later, to prevent render blocking
