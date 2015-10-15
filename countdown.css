@@ -146,6 +146,7 @@ aside h2 {
 }
 .audio-container h2 {
   margin: 10px 0;
+  margin-right: 10px;
 }
 .song-controls {
   margin-top: 10px;

@@ -8,6 +8,15 @@ function initPage() {
 
   function toggleIrc() {
     body.classList.toggle('open');
+    if (!$('.ircContainer').innerHTML) {
+      var irc = document.createElement('iframe');
+      irc.src = 'http://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky';
+      irc.classList.add('irc');
+      irc.addEventListener('load', function() {
+        $('.ircHeader').innerHTML = 'IRC: #nomanssky'
+      });
+      $('.ircContainer').appendChild(irc);
+    }
   }
 
   // Add fonts in later, to prevent render blocking
@@ -105,9 +114,6 @@ function changeAudio() {
   // If the player doesn't exist yet, create it
   if (!player) {
     player = document.createElement('audio');
-    // Play if autoplay play button is playing
-    if ($('.play-svg.hidden'))
-      player.autoplay = true;
     // Set volume if stored
     if (localStorage)
       player.volume = localStorage.getItem('nms-vol') || 0.5;
@@ -380,6 +386,9 @@ function stopAllCountdowns() {
 window.addEventListener('DOMContentLoaded', function() {
   initPage();
   shuffleAudio();
+});
+
+window.addEventListener('load', function() {
   changeAudio();
 });
 
