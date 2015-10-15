@@ -8,6 +8,15 @@ function initPage() {
 
   function toggleIrc() {
     body.classList.toggle('open');
+    if (!$('.ircContainer').innerHTML) {
+      var irc = document.createElement('iframe');
+      irc.src = 'http://kiwiirc.com/client/irc.snoonet.org/?nick=NoManNaut&theme=basic#nomanssky';
+      irc.classList.add('irc');
+      irc.addEventListener('load', function() {
+        $('.ircHeader').innerHTML = 'IRC: #nomanssky'
+      });
+      $('.ircContainer').appendChild(irc);
+    }
   }
 
   // Add fonts in later, to prevent render blocking
@@ -47,60 +56,41 @@ function initPage() {
   if (window.location.hash === '#irc')
     body.classList.add('open');
 
-  // Load in images, and get them changing every 60 seconds
-  // preloadImages(); // Image loading will occur once initial page content has loaded.
-  setInterval(changeImage, 60000);
-  changeImage();
-
   // Set up countdowns
   createCountdowns();
   var artist = document.createElement('h4');
   artist.classList.add('artist');
   artist.classList.add('center');
   $('.main-container').appendChild(artist);
+
+  // Set up background changing
+  setInterval(changeImage, 60000);
+  // For whaever reason, I need to do this twice.
+  changeImage();
+  changeImage();
 }
 
 /**
- * Loads all background images, and puts
- * them in an array for future use
+ * Mix up the playlist, or set it back to straight
  */
-function preloadImages() {
-  data_images.forEach(function(image) {
-    var newImg = document.createElement('img');
-    if (image.src)
-      newImg.src = 'img/' + image.src;
-    else
-      newImg.src = 'img/' + image;
-    images.push(newImg);
-  });
-}
-
-/**
- * Loads all songs, and puts
- * them in an array for future use
- */
-function preloadAudio() {
-  data_songs.forEach(function(song) {
-    var newAudio = document.createElement('audio');
-    newAudio.src = 'audio/' + song.src;
-    songs.push(newAudio);
-  });
-}
-
 function shuffleAudio() {
   var newPl = [];
 
+  // If we're shuffling
   if (document.querySelector('.repeat-svg.hidden')) {
+    // Add songs to temporary list
     var tempPl = [];
     data_songs.forEach(function(song) {
       tempPl.push(song);
     });
+    // Take a random song out, put in new list
     while (tempPl.length > 0) {
       var index = Math.floor(Math.random() * tempPl.length);
       newPl.push(tempPl[index]);
       tempPl.splice(index, 1);
     }
   } else {
+    // Put songs in list in order
     data_songs.forEach(function(song) {
       newPl.push(song);
     });
@@ -109,81 +99,117 @@ function shuffleAudio() {
   playlist = newPl;
 }
 
+/**
+ * Change the song to the next one in the list
+ */
 function changeAudio() {
   var $ = document.querySelector.bind(document);
   currSongIndex++;
+  // If we've gone too far, recreate the playlist
   if (currSongIndex == playlist.length) {
     currSongIndex = 0;
     shuffleAudio();
   }
 
+  // If the player doesn't exist yet, create it
   if (!player) {
     player = document.createElement('audio');
-    if ($('.play-svg.hidden'))
-      player.autoplay = true;
+    // Set volume if stored
     if (localStorage)
       player.volume = localStorage.getItem('nms-vol') || 0.5;
+    // Add listeners
     player.addEventListener('ended', changeAudio);
     player.addEventListener('timeupdate', changeAudioProgress);
   }
 
+  // Set player source, and artist information
   player.src = 'audio/' + playlist[currSongIndex].src;
   $('.song-title').innerHTML = playlist[currSongIndex].title;
   $('.song-artist').innerHTML = playlist[currSongIndex].artist;
   $('.song-artist-link').href = playlist[currSongIndex].artistLink;
   $('.progress-bar').style.width = 0;
+
+  if ($('.play-svg.hidden'))
+    player.play();
 }
 
+/**
+ * Toggle play state
+ */
 function toggleAudio() {
   var playSVG = document.querySelector('.play-svg');
   var pauseSVG = document.querySelector('.pause-svg');
+  // If we should play
   if (pauseSVG.classList.contains('hidden')) {
+    // Play is player exists
     if (player)
       player.play();
+    // Store autoplay
     if (localStorage)
       localStorage.setItem('nms-autoplay', true);
   } else {
+    // Pause of player exists
     if (player)
       player.pause();
+    // Remove autoplay from storage
     if (localStorage)
       localStorage.removeItem('nms-autoplay');
   }
+  // Toggle which icon is visible
   playSVG.classList.toggle('hidden');
   pauseSVG.classList.toggle('hidden');
 }
 
+/**
+ * Toggle playlist shuffling
+ */
 function toggleShuffle() {
   var shuffleSVG = document.querySelector('.shuffle-svg');
   var repeatSVG = document.querySelector('.repeat-svg');
+  // Toggle icons
   shuffleSVG.classList.toggle('hidden');
   repeatSVG.classList.toggle('hidden');
 
+  // Store shuffle state
   if (localStorage)
     if (shuffleSVG.classList.contains('hidden'))
       localStorage.setItem('nms-repeat', true);
     else
       localStorage.removeItem('nms-repeat');
 
-
+    // Recreate playlist
   shuffleAudio();
 }
 
+/**
+ * Increase volume
+ */
 function volUp() {
+  // Cap at 1 (otherwise exception is thrown)
   var vol = Math.min(player.volume + 0.1, 1);
   player.volume = vol;
 
+  // Store volume
   if (localStorage)
     localStorage.setItem('nms-vol', vol);
 }
 
+/**
+ * Decrease volume
+ */
 function volDown() {
+  // Cap at 0 (otherwise exception thrown)
   var vol = Math.max(player.volume - 0.1, 0);
   player.volume = vol;
 
+  // Store volume
   if (localStorage)
     localStorage.setItem('nms-vol', vol);
 }
 
+/**
+ * Update the progress bar with song progress
+ */
 function changeAudioProgress() {
   document.querySelector('.progress-bar').style.width = ((player.currentTime / player.duration) * 100) + '%';
 }
@@ -195,28 +221,31 @@ function changeImage(bgIndex) {
   var $ = document.querySelector.bind(document);
   var bgElement = $('.bg');
   var body = $('body');
-  bgElement.classList.remove('fadeout');
-  bgElement.style.opacity = 1; // Manually specify opacity
-  bgElement.style.backgroundImage = body.style.backgroundImage;
 
-  if (typeof bgIndex === 'undefined' || bgIndex >= data_images.length)
-    bgIndex = nextImageIndex();
+  bgElement.classList.add('fadein');
+  bgElement.style.opacity = ''; // Manually specify opacity
 
-  var image = data_images[bgIndex];
-  if (image.artist)
-    body.style.backgroundImage = 'url(img/' + image.src + ')';
-  else
-    body.style.backgroundImage = 'url(img/' + image + ')';
+  if (typeof bgIndex === 'number' && bgIndex <= data_images.length)
+    nextBgIndex = bgIndex;
+
+  if (data_images[nextBgIndex].artist)
+    $('.artist').innerHTML = 'Artist: ' + data_images[nextBgIndex].artist;
+  else {
+    $('.artist').innerHTML = '';
+  }
   // Start the crossfade after 100ms
   setTimeout(function() {
+    body.style.backgroundImage = bgElement.style.backgroundImage;
+
+    nextBgIndex = nextImageIndex();
+    var image = data_images[nextBgIndex];
     if (image.artist)
-      $('.artist').innerHTML = 'Artist: ' + image.artist;
-    else {
-      $('.artist').innerHTML = '';
-    }
-    bgElement.classList.add('fadeout');
-    bgElement.style.opacity = ''; // Remove overly-specific rule to allow animation to work
-  }, 100);
+      bgElement.style.backgroundImage = 'url(img/' + image.src + ')';
+    else
+      bgElement.style.backgroundImage = 'url(img/' + image + ')';
+    bgElement.classList.remove('fadein');
+    bgElement.style.opacity = 0; // Remove overly-specific rule to allow animation to work
+  }, 1000);
 
   return bgIndex;
 }
@@ -277,6 +306,7 @@ function createCountdowns() {
     }
   }
 
+  // Set interval for next update
   interval = setInterval(function() {
     countdowns.forEach(function(countdown) {
       if (typeof countdown.currTime !== 'undefined')
@@ -355,9 +385,10 @@ function stopAllCountdowns() {
 
 window.addEventListener('DOMContentLoaded', function() {
   initPage();
-  preloadImages();
-  preloadAudio();
   shuffleAudio();
+});
+
+window.addEventListener('load', function() {
   changeAudio();
 });
 
@@ -376,9 +407,7 @@ var countdowns = [{
 
 var interval;
 
-var images = [];
-
-var songs = [];
+var nextBgIndex = 0;
 var playlist = [];
 var currSongIndex = 0;
 var player;
@@ -443,8 +472,93 @@ var data_images = [
 ];
 
 var data_songs = [{
-  title: 'There\'s nothing here yet',
-  artist: 'Don\'t worry, I\'m working on it!',
-  artistLink: '.',
-  src: ''
+  title: 'Atlas',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/Atlas.mp3'
+}, {
+  title: 'First Step [1969]',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/FirstStep.mp3'
+}, {
+  title: 'Soleth Prime',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/SolethPrime.mp3'
+}, {
+  title: 'The Lore',
+  artist: 'JayKob',
+  artistLink: 'https://soundcloud.com/jaykobmusic',
+  src: 'JayKob/TheLore.mp3'
+}, {
+  title: 'A Familiar Place',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/AFamiliarPlace.mp3'
+}, {
+  title: 'A First Night\'s Dream',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/AFirstNightsDream.mp3'
+}, {
+  title: 'A New Dawn',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/ANewDawn.mp3'
+}, {
+  title: 'Burning Desire',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/BurningDesire.mp3'
+}, {
+  title: 'Darkness Settles',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/DarknessSettles.mp3'
+}, {
+  title: 'Entering the Realm of Giants',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/EnteringTheRealmOfGiants.mp3'
+}, {
+  title: 'Escape Velocity',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/EscapeVelocity.mp3'
+}, {
+  title: 'Flashing Lights',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/FlashingLights.mp3'
+}, {
+  title: 'Hyperdrive',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/Hyperdrive.mp3'
+}, {
+  title: 'If That\'s what it Takes',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/IfThatsWhatItTakes.mp3'
+}, {
+  title: 'Leaving the Habitable Zone',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LeavingTheHabitableZone.mp3'
+}, {
+  title: 'Lifting Off',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LiftingOff.mp3'
+}, {
+  title: 'Looking at the Stars',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LookingAtTheStars.mp3'
+}, {
+  title: 'Looking Back',
+  artist: 'Eric Warncke',
+  artistLink: 'https://soundcloud.com/ericwarncke',
+  src: 'EricWarncke/LookingBack.mp3'
 }]

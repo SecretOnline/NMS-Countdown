@@ -146,6 +146,7 @@ aside h2 {
 }
 .audio-container h2 {
   margin: 10px 0;
+  margin-right: 10px;
 }
 .song-controls {
   margin-top: 10px;
@@ -216,16 +217,16 @@ aside h2 {
 .hidden {
   display: none;
 }
-.fadeout {
+.fadein {
   animation-duration: 1s;
-  animation-name: fadeout;
+  animation-name: fadein;
 }
-@keyframes fadeout {
+@keyframes fadein {
   from {
-    opacity: 1;
+    opacity: 0;
   }
   to {
-    opacity: 0;
+    opacity: 1;
   }
 }
 @media all and (min-width: 920px) {
