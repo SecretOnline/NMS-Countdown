@@ -119,7 +119,7 @@
     'logo.png'
   ];
 
-  win.addEventListener('DOMContentLoaded', function() {
+  win.addEventListener('load', function() {
     initBackgrounds();
   });
   if (doc.readyState !== 'loading')

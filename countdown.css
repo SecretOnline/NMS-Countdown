@@ -17,6 +17,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
+  background: -moz-linear-gradient(top, #00af86 5%,#00b593 16%,#68cc96 65%,#68cc96 76%,#7fbc4a 80%,#7fbc4a 85%);
+  background: -webkit-linear-gradient(top, #00af86 5%,#00b593 16%,#68cc96 65%,#68cc96 76%,#7fbc4a 80%,#7fbc4a 85%);
+  background: linear-gradient(to bottom, #00af86 5%,#00b593 16%,#68cc96 65%,#68cc96 76%,#7fbc4a 80%,#7fbc4a 85%);
 }
 iframe {
   border: none;
