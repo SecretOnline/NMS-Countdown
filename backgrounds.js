@@ -79,16 +79,6 @@
       $('body').style.backgroundImage = 'url(img/' + img.src + ')';
     else
       $('body').style.backgroundImage = 'url(img/' + img + ')';
-  }
-
-  function changeNextImage() {
-    nextBgIndex = Math.floor(Math.random() * data_images.length);
-
-    var img = data_images[nextBgIndex];
-    if (img.src)
-      $('.bg').style.backgroundImage = 'url(img/' + img.src + ')';
-    else
-      $('.bg').style.backgroundImage = 'url(img/' + img + ')';
 
     var artist = $('.artist');
     if (!artist) {
@@ -101,6 +91,16 @@
       artist.innerHTML = 'Artist: ' + img.artist;
     else
       artist.innerHTML = '';
+  }
+
+  function changeNextImage() {
+    nextBgIndex = Math.floor(Math.random() * data_images.length);
+
+    var img = data_images[nextBgIndex];
+    if (img.src)
+      $('.bg').style.backgroundImage = 'url(img/' + img.src + ')';
+    else
+      $('.bg').style.backgroundImage = 'url(img/' + img + ')';
   }
 
   function doImageFadeIn(index) {
