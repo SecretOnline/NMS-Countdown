@@ -183,11 +183,11 @@
 
   var interval;
 
-
-  win.addEventListener('DOMContentLoaded', function() {
-    initPage();
-  });
   if (doc.readyState !== 'loading')
     initPage();
+  else
+    win.addEventListener('DOMContentLoaded', function() {
+      initPage();
+    });
 
 })(window, document);
