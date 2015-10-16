@@ -17,6 +17,7 @@
     $('.button-volUp').addEventListener('click', volUp);
     $('.button-volDown').addEventListener('click', volDown);
     shuffleAudio();
+    changeAudio();
   }
 
   /**
@@ -172,7 +173,7 @@
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/Atlas.mp3'
   }, {
-    title: 'Darm Matter',
+    title: 'Dark Matter',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/DarkMatter.mp3'
@@ -278,15 +279,11 @@
     src: 'EricWarncke/LookingBack.mp3'
   }];
 
-  win.addEventListener('DOMContentLoaded', function() {
-    initAudio();
-  });
   if (doc.readyState !== 'loading')
     initAudio();
-  win.addEventListener('load', function() {
-    changeAudio();
-  });
-  if (doc.readyState === 'complete')
-    changeAudio();
+  else
+    win.addEventListener('DOMContentLoaded', function() {
+      initAudio();
+    });
 
 })(window, document);
