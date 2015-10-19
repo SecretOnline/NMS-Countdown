@@ -168,6 +168,11 @@
   var player;
 
   var data_songs = [{
+    title: 'NoSkyInSpace',
+    artist: '/u/nhingy',
+    artistLink: 'https://soundcloud.com/nhingy',
+    src: 'nhingy/NoSkyInSpace.mp3'
+  }, {
     title: 'Atlas',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
