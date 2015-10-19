@@ -26,6 +26,8 @@ While this project doesn't have a specific license, it was not intended for comm
 
 That said, this also contains resources that others might have the rights to. They are either credited below, or when their work is being shown. Please ask them, or check their licenses, before using those resources.
 
+If your work is here and I haven't given you credit for it, please send me a message/email. I'll try work things out with you, so that this countdown can stay as useful as it can.
+
 ## Other things used here
 
 All icons are from Google's [Material Design Icons](https://www.google.com/design/icons/). You can find them on [GitHub](https://github.com/google/material-design-icons), along with the [license](https://github.com/google/material-design-icons/blob/master/LICENSE).
