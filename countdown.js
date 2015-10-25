@@ -174,10 +174,16 @@
     noText: 'It\'s a secret<sup>tm</sup>',
     times: []
   }, {
-    title: 'Paris Games Week - Sony Conference',
+    title: 'Paris Games Week - Sony Conference (No NMS)',
     endText: 'Sony on stage!',
     times: [
       "2015-10-27T17:00+00:00"
+    ]
+  }, {
+    title: 'PlayStation Experience (No confirmation)',
+    endText: 'Experiences are happening\!',
+    times: [
+      "2015-12-05T10:00-08:00"
     ]
   }];
 
