@@ -33,6 +33,24 @@
     }, {
       src: 'fan8.jpg',
       artist: '/u/phobox91'
+    }, {
+      src: 'fan9.jpg',
+      artist: '/u/FishRoll'
+    }, {
+      src: 'fan10.jpg',
+      artist: '/u/FishRoll'
+    }, {
+      src: 'fan11.jpg',
+      artist: '/u/FishRoll'
+    }, {
+      src: 'fan12.jpg',
+      artist: '/u/FishRoll'
+    }, {
+      src: 'fan13.jpg',
+      artist: '/u/FishRoll'
+    }, {
+      src: 'fan14.jpg',
+      artist: '/u/FishRoll'
     },
     'Fleet.png',
     'GlattrecSystem.png',
