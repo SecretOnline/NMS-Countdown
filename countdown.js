@@ -170,15 +170,9 @@
 
   var countdowns = [{
     title: 'Countdown to No Man\'s Sky',
-    endText: 'No Man\'s Sky Has Been Released',
-    noText: 'It\'s a secret<sup>tm</sup>',
+    endText: 'Now<sup>tm</sup>',
+    noText: 'June 2016',
     times: []
-  }, {
-    title: 'Paris Games Week - Sony Conference (No NMS)',
-    endText: 'Sony on stage!',
-    times: [
-      "2015-10-27T17:00+00:00"
-    ]
   }, {
     title: 'PlayStation Experience (No confirmation)',
     endText: 'Experiences are happening\!',
