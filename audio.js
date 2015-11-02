@@ -188,6 +188,11 @@
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/FirstStep.mp3'
   }, {
+    title: 'Home',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/Home.mp3'
+  }, {
     title: 'Journey Into Space',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
