@@ -25,11 +25,6 @@
     robotoMono.href = 'http://fonts.googleapis.com/css?family=Roboto+Mono:300';
     robotoMono.type = 'text/css';
     currStyle.parentNode.insertBefore(robotoMono, currStyle);
-    var raleway = doc.createElement('link');
-    raleway.rel = 'stylesheet';
-    raleway.href = 'http://fonts.googleapis.com/css?family=Raleway';
-    raleway.type = 'text/css';
-    currStyle.parentNode.insertBefore(raleway, currStyle);
 
     // Set up button
     var ircButton = $('.ircButton');
