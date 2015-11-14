@@ -178,6 +178,11 @@
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/Atlas.mp3'
   }, {
+    title: 'Aurora Night',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/AuroraNight.mp3'
+  }, {
     title: 'Dark Matter',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
