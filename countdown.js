@@ -169,6 +169,10 @@ var startCountdowns = (function(win, doc) {
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
     times: []
+  }, {
+    title: 'E3 2016 (you must be deperate if you\'re here)',
+    endText: 'E3 is on!',
+    times: ['2016-06-14T12:00:00-08:00']
   }];
 
   if (doc.readyState !== 'loading')
