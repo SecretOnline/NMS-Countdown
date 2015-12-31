@@ -1,4 +1,5 @@
-(function(win, doc) {
+var interval;
+var startCountdowns = (function(win, doc) {
   'use strict';
   var $ = doc.querySelector.bind(doc);
 
@@ -87,12 +88,20 @@
     }
 
     // Set interval for next update
-    interval = setInterval(function() {
-      countdowns.forEach(function(countdown) {
-        if (typeof countdown.currTime !== 'undefined')
-          updateCountdown(countdown);
-      });
-    }, 7);
+    iterateCountdowns();
+  }
+
+  /**
+   * Tie countdown updating to the browser's redraw loop
+   * Since that's how fast the browser is drawing, updates occured
+   * only as often as necessary
+   */
+  function iterateCountdowns() {
+    countdowns.forEach(function(countdown) {
+      if (typeof countdown.currTime !== 'undefined')
+        updateCountdown(countdown);
+    });
+    interval = requestAnimationFrame(iterateCountdowns);
   }
 
   function updateCountdown(countdown) {
@@ -154,14 +163,6 @@
     }
   }
 
-  /**
-   * Mainly to stop browser throwing several hundred errors every second
-   * I'm going to leave this in in case someone wants to stop the clock.
-   */
-  function stopAllCountdowns() {
-    if (interval)
-      win.clearInterval(interval);
-  }
 
   var countdowns = [{
     title: 'Countdown to No Man\'s Sky',
@@ -169,14 +170,10 @@
     noText: 'June 2016',
     times: []
   }, {
-    title: 'PlayStation Experience (No confirmation)',
-    endText: 'Experiences are happening\!',
-    times: [
-      "2015-12-05T10:00-08:00"
-    ]
+    title: 'E3 2016 (you must be deperate if you\'re here)',
+    endText: 'E3 is on!',
+    times: ['2016-06-14T12:00:00-08:00']
   }];
-
-  var interval;
 
   if (doc.readyState !== 'loading')
     initPage();
@@ -185,4 +182,18 @@
       initPage();
     });
 
+  //
+  return iterateCountdowns;
+
 })(window, document);
+
+/**
+ * Mainly to stop browser throwing several hundred errors every
+ * second when something goes wrong
+ * I'm going to leave this in in case someone wants to stop the
+ * clock for whatever reason
+ */
+function stopCountdowns() {
+  if (interval)
+    window.cancelAnimationFrame(interval);
+}
