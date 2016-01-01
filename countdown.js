@@ -23,7 +23,7 @@ var startCountdowns = (function(win, doc) {
     currStyle.parentNode.insertBefore(geoSans, currStyle);
     var robotoMono = doc.createElement('link');
     robotoMono.rel = 'stylesheet';
-    robotoMono.href = 'http://fonts.googleapis.com/css?family=Roboto+Mono:300';
+    robotoMono.href = '//fonts.googleapis.com/css?family=Roboto+Mono:300';
     robotoMono.type = 'text/css';
     currStyle.parentNode.insertBefore(robotoMono, currStyle);
 
