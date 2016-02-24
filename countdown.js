@@ -170,6 +170,10 @@ var startCountdowns = (function(win, doc) {
     noText: 'June 2016',
     times: []
   }, {
+    title: 'PSVR at GDC (NMS attendance not confirmed)',
+    endText: 'Put your goggles on, it\'s VR time!',
+    times: ['2016-03-15T14:00:00-08:00']
+  }, {
     title: 'E3 2016 (you must be desperate if you\'re here)',
     endText: 'E3 is on!',
     times: ['2016-06-14T12:00:00-08:00']
