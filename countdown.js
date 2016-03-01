@@ -48,8 +48,8 @@ var startCountdowns = (function(win, doc) {
     for (var i = 0; i < countdowns.length; i++) {
       // Create elements
       var container = doc.createElement('div');
-      var titleElement = doc.createElement(i === 0 ? 'h1' : 'h2'); // First countdown is bigger
-      var countElement = doc.createElement(i === 0 ? 'h2' : 'h3');
+      var titleElement = doc.createElement('h2'); // First countdown is bigger
+      var countElement = doc.createElement('h3');
       // Set up elements
       titleElement.innerHTML = countdowns[i].title;
       container.classList.add('countdown-container');
@@ -60,6 +60,9 @@ var startCountdowns = (function(win, doc) {
       countElement.innerHTML = '<span class="d"></span>d:<span class="h"></span>h:<span class="m"></span>m:<span class="s"></span>s:<span class="ms"></span>';
       container.appendChild(titleElement);
       container.appendChild(countElement);
+      if (countdowns[i].style) {
+        container.classList.add(countdowns[i].style);
+      }
       // If there are countdowns, find which one to use
       if (countdowns[i].times && countdowns[i].times.length) {
         for (var j = 0; j < countdowns[i].times.length; j++) {
@@ -168,7 +171,8 @@ var startCountdowns = (function(win, doc) {
     title: 'Countdown to No Man\'s Sky',
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
-    times: []
+    times: [],
+    style: 'large'
   }, {
     title: 'Embargo Lifts (Note: estimated time)',
     endText: 'New articles some time today!',
@@ -176,11 +180,13 @@ var startCountdowns = (function(win, doc) {
   }, {
     title: 'PSVR at GDC (NMS attendance not confirmed)',
     endText: 'Put your goggles on, it\'s VR time!',
-    times: ['2016-03-15T14:00:00-08:00']
+    times: ['2016-03-15T14:00:00-08:00'],
+    style: 'small'
   }, {
     title: 'E3 2016 (you must be desperate if you\'re here)',
     endText: 'E3 is on!',
-    times: ['2016-06-14T12:00:00-08:00']
+    times: ['2016-06-14T12:00:00-08:00'],
+    style: 'small'
   }];
 
   if (doc.readyState !== 'loading')

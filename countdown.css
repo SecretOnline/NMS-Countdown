@@ -10,6 +10,12 @@ noscript {
   font-family: 'Roboto Mono', monospace;
   font-weight: 300;
 }
+.countdown-container.small {
+  font-size: 0.75em;
+}
+.countdown-container.large {
+  font-size: 1.5em;
+}
 body {
   margin: 0;
   overflow: hidden;
@@ -17,7 +23,7 @@ body {
   background-repeat: no-repeat !important;
   background-position: center !important;
   height: 100vh;
-  background: url("img/BlueSpace.png");
+  background: url('img/BlueSpace.png');
 }
 iframe {
   border: none;
@@ -146,8 +152,7 @@ aside h2 {
   width: 100vw;
 }
 .audio-container h2 {
-  margin: 10px 0;
-  margin-right: 10px;
+  margin: 10px 10px 10px 0;
 }
 .song-controls {
   margin-top: 10px;
