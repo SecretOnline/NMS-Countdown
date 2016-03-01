@@ -170,6 +170,10 @@ var startCountdowns = (function(win, doc) {
     noText: 'June 2016',
     times: []
   }, {
+    title: 'Embargo Lifts (Note: estimated time)',
+    endText: 'New articles some time today!',
+    times: ['2016-03-03T14:00:00-08:00']
+  }, {
     title: 'PSVR at GDC (NMS attendance not confirmed)',
     endText: 'Put your goggles on, it\'s VR time!',
     times: ['2016-03-15T14:00:00-08:00']
