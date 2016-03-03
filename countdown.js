@@ -171,12 +171,8 @@ var startCountdowns = (function(win, doc) {
     title: 'Countdown to No Man\'s Sky',
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
-    times: [],
+    times: ['2016-06-21'],
     style: 'large'
-  }, {
-    title: 'Embargo Lifts',
-    endText: 'New articles some time today!',
-    times: ['2016-03-03T16:00:00']
   }, {
     title: 'PSVR at GDC (NMS attendance not confirmed)',
     endText: 'Put your goggles on, it\'s VR time!',
