@@ -174,16 +174,16 @@ var startCountdowns = (function(win, doc) {
     times: [],
     style: 'large'
   }, {
-    title: 'Embargo Lifts (Note: estimated time)',
+    title: 'Embargo Lifts',
     endText: 'New articles some time today!',
-    times: ['2016-03-03T14:00:00-08:00']
+    times: ['2016-03-03T16:00:00']
   }, {
     title: 'PSVR at GDC (NMS attendance not confirmed)',
     endText: 'Put your goggles on, it\'s VR time!',
     times: ['2016-03-15T14:00:00-08:00'],
     style: 'small'
   }, {
-    title: 'E3 2016 (you must be desperate if you\'re here)',
+    title: 'E3 2016',
     endText: 'E3 is on!',
     times: ['2016-06-14T12:00:00-08:00'],
     style: 'small'
