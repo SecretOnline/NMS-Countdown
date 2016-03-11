@@ -14,19 +14,6 @@ var startCountdowns = (function(win, doc) {
       body.classList.toggle('open');
     }
 
-    // Add fonts in later, to prevent render blocking
-    var currStyle = $('link[rel="stylesheet"]');
-    var geoSans = doc.createElement('link');
-    geoSans.rel = 'stylesheet';
-    geoSans.href = 'fonts.css';
-    geoSans.type = 'text/css';
-    currStyle.parentNode.insertBefore(geoSans, currStyle);
-    var robotoMono = doc.createElement('link');
-    robotoMono.rel = 'stylesheet';
-    robotoMono.href = '//fonts.googleapis.com/css?family=Roboto+Mono:300';
-    robotoMono.type = 'text/css';
-    currStyle.parentNode.insertBefore(robotoMono, currStyle);
-
     // Set up button
     var ircButton = $('.ircButton');
     ircButton.addEventListener('click', toggleIrc);
