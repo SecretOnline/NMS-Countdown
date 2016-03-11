@@ -97,6 +97,14 @@ footer {
   padding-top: 0.25em;
   padding-bottom: 0.5em;
   background-color: #7fbc4a;
+  color: #fff;
+}
+footer a {
+  color: #fff !important;
+  text-decoration: underline;
+}
+footer a:hover {
+  text-decoration: none;
 }
 .github svg path {
   transform: scale(0.024);
