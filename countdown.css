@@ -17,6 +17,7 @@ noscript {
   font-size: 1.5em;
 }
 body {
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
   overflow: hidden;
   background-size: cover !important;
@@ -86,6 +87,24 @@ header button svg:hover {
 }
 header button svg:active {
   background-color: rgba(255, 255, 255, .4);
+}
+footer {
+  font-size: 0.7em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding-top: 0.25em;
+  padding-bottom: 0.5em;
+  background-color: #7fbc4a;
+  color: #fff;
+}
+footer a {
+  color: #fff !important;
+  text-decoration: underline;
+}
+footer a:hover {
+  text-decoration: none;
 }
 .github svg path {
   transform: scale(0.024);
