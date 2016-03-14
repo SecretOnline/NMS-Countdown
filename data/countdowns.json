@@ -9,13 +9,13 @@
   {
     "title": "PSVR at GDC (NMS attendance not confirmed)",
     "endText": "Put your goggles on, it's VR time!",
-    "times": ["2016-03-15T14:00:00-08:00"],
+    "times": ["2016-03-15T14:00:00-07:00"],
     "style": "small"
   },
   {
     "title": "E3 2016",
     "endText": "E3 is on!",
-    "times": ["2016-06-14T12:00:00-08:00"],
+    "times": ["2016-06-14T12:00:00-07:00"],
     "style": "small"
   }
 ]
