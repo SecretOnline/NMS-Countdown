@@ -161,10 +161,19 @@ var startCountdowns = (function(win, doc) {
     times: ['2016-06-21'],
     style: 'large'
   }, {
-    title: 'PSVR at GDC (NMS attendance not confirmed)',
-    endText: 'Put your goggles on, it\'s VR time!',
-    times: ['2016-03-15T14:00:00-08:00'],
-    style: 'small'
+    title: 'Potential IGN First release times',
+    endText: 'Time to mash that F5 button!',
+    times: [
+      '2016-04-11T08:00:00-08:00',
+      '2016-04-13T08:00:00-08:00',
+      '2016-04-15T08:00:00-08:00',
+      '2016-04-18T08:00:00-08:00',
+      '2016-04-20T08:00:00-08:00',
+      '2016-04-22T08:00:00-08:00',
+      '2016-04-25T08:00:00-08:00',
+      '2016-04-27T08:00:00-08:00',
+      '2016-04-29T08:00:00-08:00'
+    ]
   }, {
     title: 'E3 2016',
     endText: 'E3 is on!',
