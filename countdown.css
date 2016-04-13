@@ -109,8 +109,8 @@ footer a:hover {
 .github svg path {
   transform: scale(0.024);
 }
-main,
-aside {
+aside,
+main {
   position: absolute;
   top: 0;
   padding-top: 60px;
@@ -225,9 +225,11 @@ aside h2 {
 }
 .ircContainer {
   height: calc(100% - 68px);
+  display: flex;
+  flex-direction: column;
 }
 .irc {
-  height: 100%;
+  flex-grow: 1;
 }
 .bg {
   opacity: 0;
