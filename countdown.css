@@ -90,7 +90,7 @@ header button svg:active {
 }
 footer {
   font-size: 0.7em;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   text-align: center;
