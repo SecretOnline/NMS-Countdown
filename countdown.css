@@ -97,7 +97,7 @@ footer {
   text-align: center;
   padding-top: 0.25em;
   padding-bottom: 0.5em;
-  background-color: #7fbc4a;
+  background-color: #FC584F;
   color: #fff;
 }
 footer a {
@@ -147,7 +147,7 @@ aside {
   width: calc(100vw - 2px);
   height: calc(100vh - 60px);
   max-height: calc(100vh - 60px);
-  border-left: 2px solid #7fbc4a;
+  border-left: 2px solid #FC584F;
   background-color: #f7f7f7;
 }
 .open aside {
