@@ -44,10 +44,11 @@ header {
   overflow: hidden;
   height: 60px;
   width: 100%;
-  background-color: #7fbc4a;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom: 0.3em solid #FC584F;
   color: white;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .3);
-  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
 }
 header h1 {
   max-height: 60px;
@@ -261,6 +262,7 @@ aside h2 {
     background-color: rgba(127, 188, 74, 0);
     color: rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .3);
+    border-color: rgba(0, 0, 0, 0);
   }
   header .button-container {
     right: 0;
