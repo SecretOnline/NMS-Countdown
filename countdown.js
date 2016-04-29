@@ -158,7 +158,7 @@ var startCountdowns = (function(win, doc) {
     title: 'Countdown to No Man\'s Sky',
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
-    times: ['2016-06-21'],
+    times: ['2016-06-21T13:00:00-04:00'],
     style: 'large'
   }, {
     title: 'Potential IGN First release times',
