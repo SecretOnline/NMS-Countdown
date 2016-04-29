@@ -12,6 +12,12 @@ var startCountdowns = (function(win, doc) {
 
     function toggleIrc() {
       body.classList.toggle('open');
+
+      if (body.classList.contains('open')) {
+        ga('send', 'event', 'IRC-Drawer', 'open');
+      } else {
+        ga('send', 'event', 'IRC-Drawer', 'close');
+      }
     }
 
     // Set up button
