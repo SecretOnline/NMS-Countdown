@@ -167,20 +167,6 @@ var startCountdowns = (function(win, doc) {
     times: ['2016-06-21T13:00:00-04:00'],
     style: 'large'
   }, {
-    title: 'Potential IGN First release times',
-    endText: 'Time to mash that F5 button!',
-    times: [
-      '2016-04-11T08:00:00-08:00',
-      '2016-04-13T08:00:00-08:00',
-      '2016-04-15T08:00:00-08:00',
-      '2016-04-18T08:00:00-08:00',
-      '2016-04-20T08:00:00-08:00',
-      '2016-04-22T08:00:00-08:00',
-      '2016-04-25T08:00:00-08:00',
-      '2016-04-27T08:00:00-08:00',
-      '2016-04-29T08:00:00-08:00'
-    ]
-  }, {
     title: 'E3 2016',
     endText: 'E3 is on!',
     times: ['2016-06-14T12:00:00-08:00'],
@@ -194,7 +180,6 @@ var startCountdowns = (function(win, doc) {
       initPage();
     });
 
-  //
   return iterateCountdowns;
 
 })(window, document);
