@@ -200,7 +200,7 @@
     title: 'Everlasting Signs',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
-    src: 'JayKob/EverlastingSigns.mp3'
+    src: 'JayKob/EverlastingSigns.wav'
   }, {
     title: 'Eyes of the Sky',
     artist: 'JayKob',
@@ -260,7 +260,7 @@
     title: 'The Seen and The Unseen',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
-    src: 'JayKob/TheSeenAndTheUnseen.mp3'
+    src: 'JayKob/TheSeenAndTheUnseen.wav'
   }, {
     title: 'Time In Our Eyes',
     artist: 'JayKob',

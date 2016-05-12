@@ -161,11 +161,19 @@ var startCountdowns = (function(win, doc) {
 
 
   var countdowns = [{
-    title: 'Countdown to No Man\'s Sky',
+    title: 'Countdown to No Man\'s Sky (US)',
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
-    times: ['2016-06-21T13:00:00-04:00'],
+    times: ['2016-06-21T00:00:00-05:00'],
     style: 'large'
+  }, {
+    title: 'EU Release',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-06-22T00:00:00-00:00']
+  }, {
+    title: 'UK Release',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-06-24T00:00:00']
   }, {
     title: 'E3 2016',
     endText: 'E3 is on!',
