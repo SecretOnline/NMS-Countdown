@@ -164,16 +164,16 @@ var startCountdowns = (function(win, doc) {
     title: 'Countdown to No Man\'s Sky (US)',
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
-    times: ['2016-06-21T00:00:00-05:00'],
+    times: ['2016-08-09T17:00:00'],
     style: 'large'
   }, {
     title: 'EU Release',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-06-22T00:00:00-00:00']
+    times: ['2016-08-10T17:00:00']
   }, {
     title: 'UK Release',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-06-24T00:00:00']
+    times: ['2016-08-12T14:00:00']
   }, {
     title: 'AU Release',
     endText: 'Now<sup>tm</sup>',
