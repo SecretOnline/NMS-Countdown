@@ -177,7 +177,7 @@ var startCountdowns = (function(win, doc) {
   }, {
     title: 'AU Release',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-06-22T00:00:00+10:00']
+    times: ['2016-08-10T00:00:00+10:00']
   }, {
     title: 'E3 2016',
     endText: 'E3 is on!',
