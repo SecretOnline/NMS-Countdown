@@ -39,11 +39,14 @@
         newPl.push(tempPl[index]);
         tempPl.splice(index, 1);
       }
+
+      ga('send', 'event', 'Music-Shuffle', 'shuffle');
     } else {
       // Put songs in list in order
       data_songs.forEach(function(song) {
         newPl.push(song);
       });
+      ga('send', 'event', 'Music-Shuffle', 'loop');
     }
 
     playlist = newPl;
@@ -78,6 +81,8 @@
     $('.song-artist-link').href = playlist[currSongIndex].artistLink;
     $('.progress-bar').style.width = 0;
 
+    ga('send', 'event', 'Music-Song', 'next', playlist[currSongIndex].artist + ' - ' + playlist[currSongIndex].title);
+
     if ($('.play-svg.hidden'))
       player.play();
   }
@@ -91,15 +96,19 @@
     // If we should play
     if (pauseSVG.classList.contains('hidden')) {
       // Play is player exists
-      if (player)
+      if (player) {
         player.play();
+        ga('send', 'event', 'Music-Toggle', 'play');
+      }
       // Store autoplay
       if (localStorage)
         localStorage.setItem('nms-autoplay', true);
     } else {
       // Pause of player exists
-      if (player)
+      if (player) {
         player.pause();
+        ga('send', 'event', 'Music-Toggle', 'pause');
+      }
       // Remove autoplay from storage
       if (localStorage)
         localStorage.removeItem('nms-autoplay');
@@ -188,6 +197,16 @@
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/DarkMatter.mp3'
   }, {
+    title: 'Everlasting Signs',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/EverlastingSigns.wav'
+  }, {
+    title: 'Eyes of the Sky',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/EyesOfTheSky.mp3'
+  }, {
     title: 'First Step [1969]',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
@@ -223,10 +242,30 @@
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/SolethPrime.mp3'
   }, {
+    title: 'The Horizon',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/TheHorizon.mp3'
+  }, {
+    title: 'The Light of Billion Suns',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/TheLightOfBillionSuns.mp3'
+  }, {
     title: 'The Lore',
     artist: 'JayKob',
     artistLink: 'https://soundcloud.com/jaykobmusic',
     src: 'JayKob/TheLore.mp3'
+  }, {
+    title: 'The Seen and The Unseen',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/TheSeenAndTheUnseen.wav'
+  }, {
+    title: 'Time In Our Eyes',
+    artist: 'JayKob',
+    artistLink: 'https://soundcloud.com/jaykobmusic',
+    src: 'JayKob/TimeInOurEyes.mp3'
   }, {
     title: 'A Familiar Place',
     artist: 'Eric Warncke',

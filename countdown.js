@@ -12,6 +12,12 @@ var startCountdowns = (function(win, doc) {
 
     function toggleIrc() {
       body.classList.toggle('open');
+
+      if (body.classList.contains('open')) {
+        ga('send', 'event', 'IRC-Drawer', 'open');
+      } else {
+        ga('send', 'event', 'IRC-Drawer', 'close');
+      }
     }
 
     // Set up button
@@ -155,25 +161,23 @@ var startCountdowns = (function(win, doc) {
 
 
   var countdowns = [{
-    title: 'Countdown to No Man\'s Sky',
+    title: 'Countdown to No Man\'s Sky (US)',
     endText: 'Now<sup>tm</sup>',
     noText: 'June 2016',
-    times: ['2016-06-21'],
+    times: ['2016-08-09T17:00:00'],
     style: 'large'
   }, {
-    title: 'Potential IGN First release times',
-    endText: 'Time to mash that F5 button!',
-    times: [
-      '2016-04-11T08:00:00-08:00',
-      '2016-04-13T08:00:00-08:00',
-      '2016-04-15T08:00:00-08:00',
-      '2016-04-18T08:00:00-08:00',
-      '2016-04-20T08:00:00-08:00',
-      '2016-04-22T08:00:00-08:00',
-      '2016-04-25T08:00:00-08:00',
-      '2016-04-27T08:00:00-08:00',
-      '2016-04-29T08:00:00-08:00'
-    ]
+    title: 'EU Release',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-08-10T17:00:00']
+  }, {
+    title: 'UK Release',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-08-12T14:00:00']
+  }, {
+    title: 'AU Release',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-08-10T00:00:00+10:00']
   }, {
     title: 'E3 2016',
     endText: 'E3 is on!',
@@ -188,7 +192,6 @@ var startCountdowns = (function(win, doc) {
       initPage();
     });
 
-  //
   return iterateCountdowns;
 
 })(window, document);
