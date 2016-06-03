@@ -167,13 +167,9 @@ var startCountdowns = (function(win, doc) {
     times: ['2016-08-09T17:00:00'],
     style: 'large'
   }, {
-    title: 'EU Release',
+    title: 'EU/UK Release',
     endText: 'Now<sup>tm</sup>',
     times: ['2016-08-10T17:00:00']
-  }, {
-    title: 'UK Release',
-    endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-12T14:00:00']
   }, {
     title: 'AU Release',
     endText: 'Now<sup>tm</sup>',
