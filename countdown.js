@@ -169,16 +169,7 @@ var startCountdowns = (function(win, doc) {
   }, {
     title: 'EU/UK Release',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-10T17:00:00']
-  }, {
-    title: 'AU Release',
-    endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-10T00:00:00+10:00']
-  }, {
-    title: 'E3 2016',
-    endText: 'E3 is on!',
-    times: ['2016-06-14T12:00:00-08:00'],
-    style: 'small'
+    times: ['2016-08-10T00:00:00']
   }];
 
   if (doc.readyState !== 'loading')
