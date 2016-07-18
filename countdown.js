@@ -161,15 +161,22 @@ var startCountdowns = (function(win, doc) {
 
 
   var countdowns = [{
-    title: 'Countdown to No Man\'s Sky (US)',
+    title: 'Countdown to No Man\'s Sky (US, PS4)',
     endText: 'Now<sup>tm</sup>',
-    noText: 'June 2016',
-    times: ['2016-08-09T17:00:00'],
+    times: ['2016-08-09T00:00:00Z'],
     style: 'large'
   }, {
-    title: 'EU/UK Release',
+    title: 'Countdown to No Man\'s Sky (US, Steam)',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-08-09T10:00:00-07:00']
+  }, {
+    title: 'EU/UK Release (PS4)',
     endText: 'Now<sup>tm</sup>',
     times: ['2016-08-10T00:00:00']
+  }, {
+    title: 'EU/UK Release (Steam)',
+    endText: 'Now<sup>tm</sup>',
+    times: ['2016-08-10T10:00:00']
   }];
 
   if (doc.readyState !== 'loading')
