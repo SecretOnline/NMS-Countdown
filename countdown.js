@@ -176,7 +176,7 @@ var startCountdowns = (function(win, doc) {
   }, {
     title: 'EU/UK Release (Steam)',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-10T10:00:00']
+    times: ['2016-08-10T18:00:00+01:00']
   }];
 
   if (doc.readyState !== 'loading')
