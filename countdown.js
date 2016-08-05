@@ -166,17 +166,14 @@ var startCountdowns = (function(win, doc) {
     times: ['2016-08-09T00:00:00Z'],
     style: 'large'
   }, {
-    title: 'Countdown to No Man\'s Sky (US, Steam)',
+    title: 'PC Release (Worldwide)',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-09T10:00:00-07:00']
+    times: ['2016-08-12T10:00:00-07:00'],
+    style: 'large'
   }, {
     title: 'EU/UK Release (PS4)',
     endText: 'Now<sup>tm</sup>',
     times: ['2016-08-10T00:00:00']
-  }, {
-    title: 'EU/UK Release (Steam)',
-    endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-10T18:00:00+01:00']
   }];
 
   if (doc.readyState !== 'loading')
