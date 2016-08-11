@@ -168,7 +168,7 @@ var startCountdowns = (function(win, doc) {
   }, {
     title: 'PC Release (Worldwide)',
     endText: 'Now<sup>tm</sup>',
-    times: ['2016-08-12T06:00:00+00:00'],
+    times: ['Fri Aug 12 2016 18: 00: 00 GMT'],
     style: 'large'
   }, {
     title: 'EU/UK Release (PS4)',
